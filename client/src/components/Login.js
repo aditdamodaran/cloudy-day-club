@@ -7,7 +7,7 @@ import { darken } from 'polished'
 const LOGIN_URI =
   process.env.NODE_ENV !== 'production'
     ? 'http://localhost:8888/login'
-    : 'https://spotify-profile.herokuapp.com/login';
+    : 'https://agile-waters-30909.herokuapp.com/login';
 
 const PageContainer = styled.div`
   width: 100%;
