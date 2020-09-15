@@ -1,6 +1,5 @@
 # dependencies
 node_modules
-yarn.lock
 
 # environment
 .env
@@ -8,4 +7,3 @@ yarn.lock
 # client ignore
 client/build
 client/node_modules
-client/yarn.lock
