@@ -1,0 +1,11 @@
+# dependencies
+node_modules
+yarn.lock
+
+# environment
+.env
+
+# client ignore
+client/build
+client/node_modules
+client/yarn.lock
