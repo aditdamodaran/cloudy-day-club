@@ -1,0 +1,35 @@
+// MIXINS
+@function calculateRem($size) {
+  $remSize: $size / 16px;
+  @return #{$remSize}rem;
+}
+
+// SCREEN SIZES
+$mobile: 768;
+$tablet: 768;
+$large: 1024;
+$desktop: 1280;
+
+@mixin mobile {
+  @media only screen and (max-width: $mobile * 1px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media only screen and (max-width: $tablet * 1px) {
+    @content;
+  }
+}
+
+@mixin large {
+  @media only screen and (max-width: $large * 1px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media only screen and (min-width: $desktop * 1px) {
+    @content;
+  }
+}

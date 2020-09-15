@@ -1,0 +1,10 @@
+.playlist-link {
+  margin-top: 0.2rem;
+  display: block;
+  width: 90%;
+  padding: 0 1px;
+  color: white;
+  font-size: calculateRem(14px);
+  font-weight: 600;
+  text-decoration: none;
+}
