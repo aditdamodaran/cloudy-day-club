@@ -4,6 +4,8 @@ import { primaryTheme } from '../styles/themes';
 import GlobalFonts from '../fonts';
 import { darken } from 'polished'
 
+console.log(process.env.NODE_ENV)
+
 const LOGIN_URI =
   process.env.NODE_ENV !== 'production'
     ? 'http://localhost:8888/login'
