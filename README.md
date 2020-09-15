@@ -8,8 +8,8 @@
   <a href="https://github.com/othneildrew/Best-README-Template">
     <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/cloud_2601.png" alt="Logo" width="80" height="80">
   </a>
-
   <h3 align="center">Cloudy Day Club</h3>
+
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
