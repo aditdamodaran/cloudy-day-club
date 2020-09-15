@@ -44,7 +44,7 @@ const stateKey = 'spotify_auth_state';
 const app = express();
 
 app
-  .use(express.static(path.resolve(__dirname, '../client/public')))
+  .use(express.static(path.resolve(__dirname, '../client/build')))
   .use(cors())
   .use(cookieParser())
   .use(bodyParser.urlencoded({ extended: true }))
@@ -60,7 +60,7 @@ app
   )
 
 app.get('/', (req, res) => {
-  res.render(path.resolve(__dirname, '../client/public/index.html'));
+  res.render(path.resolve(__dirname, '../client/build/index.html'));
 })
 
 app.get('/login', function (req, res) {
