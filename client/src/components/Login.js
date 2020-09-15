@@ -9,7 +9,7 @@ console.log(process.env.NODE_ENV)
 const LOGIN_URI =
   process.env.NODE_ENV !== 'production'
     ? 'http://localhost:8888/login'
-    : 'https://agile-waters-30909.herokuapp.com/login';
+    : 'https://cloudy-day-club.herokuapp.com/login';
 
 const PageContainer = styled.div`
   width: 100%;
