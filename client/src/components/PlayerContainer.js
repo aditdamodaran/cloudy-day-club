@@ -8,6 +8,8 @@ import { CSSTransition } from 'react-transition-group'
 import Player from './Player'
 
 const PlayerPageContainer = styled.div`
+  height: 100%;
+  flex-grow: 1;
   flex-basis: 40%;
   display: grid;
   place-content: center;

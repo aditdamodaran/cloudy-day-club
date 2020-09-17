@@ -13,15 +13,15 @@ const PlaylistsGridContainer = styled.div`
 
 const PlaylistsHeader= styled.h2`
   color: white;
-  font-family: 'ProximaNova-Bold';
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif; 
   font-size: 2rem;
 `
 
 const PlaylistsGrid= styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-column-gap: 1rem;
-  grid-row-gap: 1rem;
+  grid-column-gap: 1.2rem;
+  grid-row-gap: 1.2rem;
 `
 
 class Playlists extends React.Component {
@@ -56,7 +56,7 @@ class Playlists extends React.Component {
     return (
       <PlaylistsGridContainer>
         <PlaylistsHeader>Playlists</PlaylistsHeader>
-        <PlaylistsGrid>
+        <PlaylistsGrid id="playlist-grid">
           {playlists ? 
             playlists.items.map((playlist) => (
               <PlaylistContainer

@@ -1,3 +1,7 @@
+#root {
+  overflow-y: hidden;
+}
+
 // MIXINS
 @function calculateRem($size) {
   $remSize: $size / 16px;

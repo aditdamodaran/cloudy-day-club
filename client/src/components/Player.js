@@ -17,12 +17,13 @@ const AlbumArt = styled.img`
 const PlayerSection = styled.div`
   height: 50%;
   display: flex;
+  flex-grow: 1;
   justify-content: center;
   flex-wrap: wrap;
 `
 
 const NowPlaying = styled.h1`
-  font-family: ${props => props.theme.login.fontFamily};
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif; 
   text-align: center;
   flex-basis: 100%;
 `

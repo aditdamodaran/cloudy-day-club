@@ -17,6 +17,13 @@
   color: #ed1c24;
 }
 
-// .colour {
-//   filter: brightness(0) invert(1);
-// }
+.login-container {
+  width: 50%;
+}
+
+@include mobile {
+  .login-container {
+    width: 100%;
+    // border: 100px solid red;
+  }
+}

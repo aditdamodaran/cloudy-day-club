@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { playTrack } from '../actions/playerControls'
 import styled from 'styled-components/macro';
 import playIcon from '../icons/play-icon-circular.svg'
-import { Link } from '@reach/router';
+// import { Link } from '@reach/router';
 import _ from 'lodash'
 
 const PlaylistHeaderContainer = styled.div`

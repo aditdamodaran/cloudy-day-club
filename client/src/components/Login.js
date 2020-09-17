@@ -20,7 +20,6 @@ const PageContainer = styled.div`
 
 const LoginContainer = styled.div`
   height: 100%;
-  width: 50%;
   padding: 0rem 0rem;
   background: ${props => props.theme.login.background};
   display: flex;
@@ -64,8 +63,8 @@ const LoginPageText = styled.h2`
 
 export default () => (
   <ThemeProvider theme={primaryTheme}>
-    <PageContainer className="container">
-      <LoginContainer>
+    <PageContainer>
+      <LoginContainer className="login-container">
         <Login>
           <GlobalFonts />
           <h1 id="login-page-header">

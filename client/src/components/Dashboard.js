@@ -10,9 +10,7 @@ import { primaryTheme } from '../styles/themes';
 const DashboardContainer = styled.div`
   width: 100%;
   height: 100vh;
-  overflow-x: hidden;
   display: flex;
-  /* background: #f4bed1; */
 `
 
 const NavbarContainer = styled.div`
@@ -21,14 +19,15 @@ const NavbarContainer = styled.div`
   overflow-x: hidden;
   background: darkred;
   height: 100%;
-  width: 5%;
+  width: 4rem;
+  min-width: 4rem;
   position: fixed;
   background: ${props => props.theme.spotifydarkgray};
 `
 // Margin Left Must = Navbar Container's Width
 const InterfaceContainer = styled.div`
   overflow-y: scroll;
-  margin-left: 5%;
+  margin-left: 4rem;
   background: #2b2a2a;
   /* background: gray; */
   flex-basis: 55%;

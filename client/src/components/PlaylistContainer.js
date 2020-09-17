@@ -12,26 +12,27 @@ const PlaylistItem = styled.div`
   font-weight: 600;
 `
 
-const PlaylistCover = styled.div`
+const PlaylistCoverContainer = styled.div`
   width: 100%;
   display: inline-block;
-  img {
-    &:hover{
-      opacity: 0.5;
-      transition: 0.2s;
-    }
-    width: 12.5vw;
-    height: 12.5vw;
-    object-fit: cover;
-  }
+`
+const PlaylistCover = styled.div` 
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;   
 `
 
 export default ({image, link, name}) => (
   <PlaylistItem>
     <Link to={link}>
-      <PlaylistCover>
-        <img src={image} alt={name}/>
-      </PlaylistCover>
+      <PlaylistCoverContainer>
+        <PlaylistCover className="playlist-cover" 
+        style={{
+          background: `url(${image ? image : ""})`
+        }}
+        alt={name}
+      />
+      </PlaylistCoverContainer>
     </Link>
     <Link to={link} className="playlist-link">{name}</Link>
   </PlaylistItem>

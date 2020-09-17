@@ -7,8 +7,6 @@ let REDIRECT_URI = process.env.REDIRECT_URI || 'http://localhost:8888/callback';
 let FRONTEND_URI = process.env.FRONTEND_URI || 'http://localhost:3000';
 const PORT = process.env.PORT || 8888;
 
-console.log(process.env.NODE_ENV)
-
 if (process.env.NODE_ENV !== 'production') {
   REDIRECT_URI = 'http://localhost:8888/callback';
   FRONTEND_URI = 'http://localhost:3000';
