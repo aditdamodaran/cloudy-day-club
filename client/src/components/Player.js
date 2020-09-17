@@ -17,7 +17,6 @@ const AlbumArt = styled.img`
 const PlayerSection = styled.div`
   height: 50%;
   display: flex;
-  flex-grow: 1;
   justify-content: center;
   flex-wrap: wrap;
 `

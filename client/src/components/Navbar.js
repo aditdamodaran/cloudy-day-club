@@ -3,21 +3,18 @@ import styled from 'styled-components/macro';
 import playlistsIcon from '../icons/list-icon.svg'
 import { Link } from '@reach/router';
 
-
 const NavigationContainer = styled.div`
   display: grid;
   align-items: start;
-  /* border: 1px solid red; */
   height: 70%;
   width: 40%;
   margin: auto;
 `
-
 const NavIcon = styled.div`
   filter: brightness(0) invert(1);
   opacity: 0.8;
   transition: opacity 0.1s;
-  &:hover{
+  &:hover {
     opacity: 0.4;
   }
   padding-bottom: 1rem;
@@ -25,10 +22,7 @@ const NavIcon = styled.div`
 
 const Navigation = styled.nav`
   color: white;
-  /* border: 1px solid white; */
 `
-
-
 
 const Navbar = () => (
   <NavigationContainer>
@@ -40,6 +34,6 @@ const Navbar = () => (
       </NavIcon>
     </Navigation>
   </NavigationContainer>
-)
+);
 
 export default Navbar

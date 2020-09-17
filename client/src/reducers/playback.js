@@ -3,19 +3,11 @@ const playbackReducerDefaultState = {
   pauseTrack: false,
   uri: "",
   albumArt: "",
-  trackName: "",
-  // playerState: {}
+  trackName: ""
 }
 
 export default (state = playbackReducerDefaultState, action) => {
-  // console.log(action.type)
   switch (action.type) {
-    // case 'SET_PLAYER_STATE':
-    //   console.log('HERE')
-    //   return state = {
-    //     ...state,
-    //     playerState: action.state
-    //   }
     case 'TOGGLE_PLAY':
       return state = {
         ...state,
@@ -27,7 +19,6 @@ export default (state = playbackReducerDefaultState, action) => {
         playerReady: true
       }
     case 'PLAY_TRACK':
-      // console.log("Reducer", state.uri)
       return state = {
         ...state,
         pauseTrack: false,

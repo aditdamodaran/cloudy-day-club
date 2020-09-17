@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux'
 import Login from './Login';
-import Profile from './Profile';
+import Dashboard from './Dashboard';
 import { token } from '../spotify';
 import configureStore from '../store/configureStore';
 import '../styles/styles.scss'
@@ -10,7 +10,7 @@ const store = configureStore();
 
 class App extends React.Component {
   state = {
-    token: '',
+    token: ''
   };
 
   componentDidMount() {
@@ -22,11 +22,11 @@ class App extends React.Component {
     
     return (
       <div>
-          {token ? 
-          (<Provider store={store}>
-            <Profile />
-          </Provider>) 
-          : (<Login />)}
+        {token ? (
+          <Provider store={store}>
+            <Dashboard />
+          </Provider>
+          ) : <Login />}
       </div>
     );
   }

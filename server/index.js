@@ -1,6 +1,13 @@
+/*  Express Server + Node.js Backend 
+    Spotify User Authentication with OAuth 2.0
+    https://developer.spotify.com/documentation/general/guides/authorization-guide
+*/
 
 require('dotenv').config();
 
+/**
+ * PROCESS ENVIRONMENT CONFIGURATION
+ */
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 let REDIRECT_URI = process.env.REDIRECT_URI || 'http://localhost:8888/callback';
@@ -12,6 +19,9 @@ if (process.env.NODE_ENV !== 'production') {
   FRONTEND_URI = 'http://localhost:3000';
 }
 
+/**
+ * NODE PACKAGES
+ */
 const express = require('express');
 const request = require('request');
 const cors = require('cors');
@@ -19,8 +29,6 @@ const querystring = require('querystring');
 const cookieParser = require('cookie-parser');
 const path = require('path');
 const bodyParser = require('body-parser');
-// const cluster = require('cluster');
-// const numCPUs = require('os').cpus().length;
 const history = require('connect-history-api-fallback');
 const { getColorFromURL } = require('color-thief-node');
 
@@ -28,6 +36,7 @@ const { getColorFromURL } = require('color-thief-node');
  * Generates a random string containing numbers and letters
  * @param  {number} length The length of the string
  * @return {string} The generated string
+ * (https://github.com/spotify/web-api-auth-examples/blob/master/authorization_code/app.js)
  */
 const generateRandomString = function (length) {
   let text = '';
@@ -39,10 +48,12 @@ const generateRandomString = function (length) {
   return text;
 };
 
+
+/**
+ * EXPRESS SERVER SETUP
+ */
 const stateKey = 'spotify_auth_state';
-
 const app = express();
-
 app
   .use(express.static(path.resolve(__dirname, '../client/build')))
   .use(cors())
@@ -59,15 +70,22 @@ app
     }),
   )
 
+/**
+ * HOME ROUTE
+ */
 app.get('/', (req, res) => {
   res.render(path.resolve(__dirname, '../client/build/index.html'));
 })
 
+/**
+ * LOGIN ROUTE
+ * (https://github.com/spotify/web-api-auth-examples/blob/master/authorization_code/app.js)
+ */
 app.get('/login', function (req, res) {
   const state = generateRandomString(16);
   res.cookie(stateKey, state);
 
-  // your application requests authorization
+  // SPOTIFY AUTHORIZATION SCOPES (https://developer.spotify.com/documentation/general/guides/scopes/)
   const scope =
     'streaming user-read-private user-read-email user-read-recently-played user-top-read user-follow-read user-follow-modify playlist-read-private playlist-read-collaborative playlist-modify-public';
 
@@ -82,9 +100,14 @@ app.get('/login', function (req, res) {
   );
 });
 
+
+/**
+ * CALLBACK ROUTE 
+ * (https://github.com/spotify/web-api-auth-examples/blob/master/authorization_code/app.js)
+ */
 app.get('/callback', function (req, res) {
   console.log('Getting "/callback"')
-  // your application requests refresh and access tokens
+  // Requests refresh and access tokens
   // after checking the state parameter
 
   const code = req.query.code || null;
@@ -131,6 +154,10 @@ app.get('/callback', function (req, res) {
   }
 });
 
+/**
+ * REFRESH TOKENS 
+ * (https://github.com/spotify/web-api-auth-examples/blob/master/authorization_code/app.js)
+ */
 app.get('/refresh_token', function (req, res) {
   console.log('Getting "/refresh_token"')
   // requesting access token from refresh token
@@ -157,17 +184,28 @@ app.get('/refresh_token', function (req, res) {
   });
 });
 
-app.post('/colors', function(request, response) {
+/**
+ * Colors Route
+ * 1.) Frontend sends Cover Art URL in Request Body
+ * 2.) Backend uses ColorThief to determine
+ * the dominant color and sends it back
+ * as a response.
+ * (https://www.npmjs.com/package/color-thief-node)
+ */
+app.post('/colors', function(req, res) {
   (async () => {
-    const dominantColor = await getColorFromURL(request.body.url);
-    // console.log(dominantColor)
-    response.send(dominantColor)
+    const dominantColor = await getColorFromURL(req.body.url);
+    res.send(dominantColor)
   })();
 })
 
-app.get('*', function (request, response) {
-  response.sendFile(path.resolve(__dirname, '../client/public', 'index.html'));
+/**
+ * Let the Frontend handle any other requests
+*/
+app.get('*', function (req, res) {
+  res.sendFile(path.resolve(__dirname, '../client/public', 'index.html'));
 });
 
+// Start Server
 app.listen(PORT,()=>console.log(`Server started on port: ${PORT}`))
 

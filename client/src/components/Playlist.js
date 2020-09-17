@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import { playTrack } from '../actions/playerControls'
 import styled from 'styled-components/macro';
 import playIcon from '../icons/play-icon-circular.svg'
-// import { Link } from '@reach/router';
 import _ from 'lodash'
 
 const PlaylistHeaderContainer = styled.div`
@@ -65,7 +64,6 @@ const OpenWithSpotify = styled.a`
 
 const PlaylistItems = styled.table`
   color: white;
-
   display: grid;
   border-collapse: collapse;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif; 
@@ -109,7 +107,6 @@ const PlaylistItems = styled.table`
   }
 
   td:first-child {
-    /* padding: 0.3rem 0.3rem; */
     img {
       width: 20%;
       filter: brightness(0) invert(1);
@@ -160,8 +157,6 @@ class Playlist extends Component {
       const { playlist } = this.state;
       const { data } = await getAudioFeaturesForTracks(playlist.tracks.items);
 
-      console.log(playlist)
-
       const audioFeatures = data.audio_features.reduce((obj, item) => (
         obj[item.id] = {
           acousticness: item.acousticness,
@@ -174,7 +169,7 @@ class Playlist extends Component {
         // eslint-disable-next-line no-sequences
         }, obj) ,{}
       );
-      // console.log(playlist.tracks.items)
+
       const tracks = playlist.tracks.items.map(({track})=>track).reduce((obj, item) => (
         obj[item.id] = {
           trackArtist: item.artists[0].name,
@@ -187,7 +182,6 @@ class Playlist extends Component {
       );
 
       const combined = _.merge(tracks, audioFeatures)
-      // console.log(combined)
 
       this.setState({ 
         audioFeatures: data,  
@@ -225,96 +219,72 @@ class Playlist extends Component {
  
     return (
       <div>
-          {playlist ?
-          (<PlaylistHeaderContainer>
-            <img alt={`Playlist cover for ${playlist.name}`} src={playlist.images[0].url} />
-            <PlaylistInfo>
-              <PlaylistHeader>{playlist.name}</PlaylistHeader>
-              <SubHeader>
-              <PlaylistCreator>By: @ 
-                <a href={playlist.owner.external_urls.spotify}>
-                  {playlist.owner.id}
-                </a></PlaylistCreator>
-                <OpenWithSpotify href={playlist.external_urls.spotify}>
-                  Open this playlist with Spotify
-                </OpenWithSpotify>
-              </SubHeader>
-            </PlaylistInfo>
-          </PlaylistHeaderContainer>
-          )
-          : <div>Loading</div>}
+        {playlist ?
+        <PlaylistHeaderContainer>
+          <img alt={`Playlist cover for ${playlist.name}`} src={playlist.images[0].url} />
+          <PlaylistInfo>
+            <PlaylistHeader>{playlist.name}</PlaylistHeader>
+            <SubHeader>
+            <PlaylistCreator>By: @ 
+              <a href={playlist.owner.external_urls.spotify}>
+                {playlist.owner.id}
+              </a></PlaylistCreator>
+              <OpenWithSpotify href={playlist.external_urls.spotify}>
+                Open this playlist with Spotify
+              </OpenWithSpotify>
+            </SubHeader>
+          </PlaylistInfo>
+        </PlaylistHeaderContainer>
+        : <div>Loading</div>}
         <PlaylistItems>
           <thead>
             <tr>
-              <th></th>
+              <th>{/*Play Btns.*/}</th>
               <th>NAME</th>
               <th>ARTIST</th>
               <th>LENGTH</th>
-              {/*<th>acousticness</th>
-              <th>danceability</th>
-              <th>energy</th>
-              <th>valence</th>
-              <th>instrumentalness</th>
-              <th>speechiness</th>
-              <th>temp</th>
-              <th>URI ID</th>*/}
             </tr>
           </thead>
           <tbody>
             {Object.keys(combined).length !== 0 ? 
-              (Object.keys(combined).map((key, idx) => {
-                return(
+              (Object.keys(combined).map((key, idx) => (
                   <tr key={key}>
-                    <td>{this.props.playback.playerReady ? 
-                      (<img alt="play-icon" 
-                        src={playIcon} 
-                        tabIndex={idx+1}
-                        onKeyDown={(event) => {
-                          if(event.key === 'Enter'){
-                            this.handlePlay(combined[key].albumArt, key, combined[key].trackName)
-                          }
-                        }}
-                        onClick={() => 
-                          this.handlePlay(combined[key].albumArt, key, combined[key].trackName)
-                        }
-                        />)
-                    : <img alt="play-icon-loading"  
-                        src={playIcon} 
-                      />}</td>
+                    <td>
+                      {this.props.playback.playerReady 
+                        ? <img alt="play-icon" 
+                            src={playIcon} 
+                            tabIndex={idx+1}
+                            onKeyDown={(event) => {
+                              if(event.key === 'Enter'){
+                                this.handlePlay(combined[key].albumArt, key, combined[key].trackName)
+                              }
+                            }}
+                            onClick={() => 
+                              this.handlePlay(combined[key].albumArt, key, combined[key].trackName)
+                            }
+                          />
+                        : <img alt="play-icon-loading" src={playIcon} />}
+                    </td>
                     <td><TableText>{combined[key].trackName}</TableText></td>
                     <td><TableText>{combined[key].trackArtist}</TableText></td>
                     <td>{this.formatTime(combined[key].trackLength)}</td>
-                    {/*<td>{combined[key].acousticness}</td>
-                    <td>{combined[key].danceability}</td>
-                    <td>{combined[key].energy}</td>
-                    <td>{combined[key].valence}</td>
-                    <td>{combined[key].instrumentalness}</td>
-                    <td>{combined[key].speechiness}</td>
-                    <td>{combined[key].temp}</td>
-                    <td>{key}</td>*/}
                   </tr>
-                )
-              }
-              ))
-              : (<tr><td>Loading</td></tr>)}
+                )))
+              : <tr><td>Loading</td></tr>}
           </tbody>
         </PlaylistItems>
       </div>
     )
   }
-
 }
 
 const mapStateToProps = (state) => {
-  // From Store
   const { playback, cache } = state
-  // console.log(playback)
   return { playback, cache }
 }
 
-
 const mapDispatchToProps = (dispatch) => ({
-  playTrack: (trackObject) => dispatch(playTrack(trackObject)),
+  playTrack: (trackObject) => dispatch(playTrack(trackObject))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Playlist)

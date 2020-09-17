@@ -1,11 +1,8 @@
 import React from 'react';
 import styled, {ThemeProvider} from 'styled-components/macro';
 import { primaryTheme } from '../styles/themes';
-import GlobalFonts from '../fonts';
 import { darken } from 'polished'
 import splashscreen from '../static/splashscreen.jpg'
-
-console.log(process.env.NODE_ENV)
 
 const LOGIN_URI =
   process.env.NODE_ENV !== 'production'
@@ -42,9 +39,8 @@ const Login = styled.div`
   width: 100%;
   height: 50%;
   padding: 4rem;
-  /* border: 1px solid red; */
   color: ${props => props.theme.login.white};
-  font-family: ${props => props.theme.login.fontFamily};
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif; 
   margin: 0;
   h1 { margin: 0; font-size: 4.5rem; }
   h2 { margin: 0; font-size: 1.75rem; }
@@ -53,7 +49,8 @@ const Login = styled.div`
 const LoginButton = styled.button`
   background: ${props => props.theme.spotifygreen};
   color: white;
-  font-family: ${props => props.theme.login.fontFamily};
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif; 
+  font-weight: bold;
   font-size: 1rem;
   padding: 1rem 2rem;
   margin: 1rem 0rem;
@@ -78,7 +75,6 @@ export default () => (
     <PageContainer>
       <LoginContainer className="login-container">
         <Login>
-          <GlobalFonts />
           <h1 id="login-page-header">
             <span role="img" aria-label="cloud">☁️</span> Day Club
           </h1>

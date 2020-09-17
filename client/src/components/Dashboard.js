@@ -24,37 +24,29 @@ const NavbarContainer = styled.div`
   position: fixed;
   background: ${props => props.theme.spotifydarkgray};
 `
-// Margin Left Must = Navbar Container's Width
+/* Margin Left Must = Navbar Container's Width */
 const InterfaceContainer = styled.div`
   overflow-y: scroll;
   margin-left: 4rem;
   background: #2b2a2a;
-  /* background: gray; */
   flex-basis: 55%;
 `
 
-class Dashboard extends React.Component {
+const Dashboard = () => (
+  <ThemeProvider theme={primaryTheme}>
+    <DashboardContainer>
+      <NavbarContainer>
+        <Navbar />
+      </NavbarContainer>
+      <InterfaceContainer>
+        <Router>
+          <Playlists path="/"/>
+          <Playlist path="/:playlistId" />
+        </Router>
+      </InterfaceContainer>
+      <PlayerContainer />
+    </DashboardContainer>
+  </ThemeProvider>
+);
 
-  render() {
-    
-    return (
-      <ThemeProvider theme={primaryTheme}>
-        <DashboardContainer>
-          <NavbarContainer>
-            <Navbar />
-          </NavbarContainer>
-          <InterfaceContainer>
-            <Router>
-              <Playlists path="/"/>
-              <Playlist path="/:playlistId" />
-            </Router>
-          </InterfaceContainer>
-          <PlayerContainer />
-        </DashboardContainer>
-      </ThemeProvider>
-    )
-  }
-
-}
-
-export default Dashboard
+export default Dashboard;

@@ -48,11 +48,14 @@ class Playlists extends React.Component {
 
   render() {
     var { playlists } = this.state;
-    if (Object.keys(this.props.cache.playlists).length !== 0 && !this.state.networkRequestMade) {
-      console.log('Using Cache')
-      playlists = this.props.cache.playlists;
+
+    if ( 
+      Object.keys(this.props.cache.playlists).length !== 0 
+      && !this.state.networkRequestMade
+    ) { 
+      playlists = this.props.cache.playlists; // Use Cache After 1st Load
     }
-    // console.log(playlists)
+    
     return (
       <PlaylistsGridContainer>
         <PlaylistsHeader>Playlists</PlaylistsHeader>
@@ -65,14 +68,11 @@ class Playlists extends React.Component {
                 name={playlist.name}
                 image={playlist.images[0].url}
               />
-          )) : (
-            <div>Loader</div>
-          )}
+          )) : <div>Loader</div>}
         </PlaylistsGrid>
       </PlaylistsGridContainer>
     )
   }
-
 }
 
 const mapStateToProps = (state) => {
@@ -81,7 +81,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  cachePlaylists: (playlists) => dispatch(cachePlaylists(playlists)),
+  cachePlaylists: (playlists) => dispatch(cachePlaylists(playlists))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Playlists)
