@@ -3,6 +3,7 @@ import styled, {ThemeProvider} from 'styled-components/macro';
 import { primaryTheme } from '../styles/themes';
 import GlobalFonts from '../fonts';
 import { darken } from 'polished'
+import splashscreen from '../static/splashscreen.jpg'
 
 console.log(process.env.NODE_ENV)
 
@@ -16,6 +17,8 @@ const PageContainer = styled.div`
   height: 100vh;
   overflow-x: hidden;
   overflow-y: hidden;
+  display: flex;
+  flex-wrap: nowrap;
 `
 
 const LoginContainer = styled.div`
@@ -24,6 +27,15 @@ const LoginContainer = styled.div`
   background: ${props => props.theme.login.background};
   display: flex;
   align-items: center;
+`
+
+const LoginImage = styled.div`
+  background: url(${splashscreen});
+  background-size: cover !important;                 
+  background-repeat: no-repeat !important;
+  background-position: center center !important;   
+  width: 50%;
+  height: 100%;
 `
 
 const Login = styled.div`
@@ -87,6 +99,7 @@ export default () => (
           </a>
         </Login>
       </LoginContainer>
+      <LoginImage id="login-image"/>
     </PageContainer>
   </ThemeProvider>
 );
