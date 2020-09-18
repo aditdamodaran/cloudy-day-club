@@ -4,10 +4,9 @@ import Login from './Login';
 import Dashboard from './Dashboard';
 import { token } from '../spotify';
 import configureStore from '../store/configureStore';
-import { PersistGate } from 'redux-persist/integration/react'
 import '../styles/styles.scss'
 
-const {store, persistor} = configureStore();
+const store = configureStore();
 
 class App extends React.Component {
   state = {
@@ -20,15 +19,12 @@ class App extends React.Component {
 
   render() {
     const { token } = this.state;
-    console.log(token)
     
     return (
       <div>
         {token ? (
           <Provider store={store}>
-            <PersistGate loading={null} persistor={persistor}>
-              <Dashboard />
-            </PersistGate>
+            <Dashboard />
           </Provider>
           ) : <Login />}
       </div>
