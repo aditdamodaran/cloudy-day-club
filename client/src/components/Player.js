@@ -88,11 +88,9 @@ class Player extends Component {
     }
   }
 
-  handleLoadSuccess() {
+  async handleLoadSuccess() {
     this.setState({ scriptLoaded: true });
-    console.log("Script loaded");
-    const token = getAccessToken();
-    console.log('Running handleLoadSuccess in Player')
+    const token = await getAccessToken();
     this.player = new window.Spotify.Player({
       name: 'Web Playback SDK Quick Start Player',
       getOAuthToken: cb => { cb(token); }

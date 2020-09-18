@@ -14,6 +14,8 @@ const getTokenTimestamp = () => window.localStorage.getItem('spotify_token_times
 const getLocalAccessToken = () => window.localStorage.getItem('spotify_access_token');
 const getLocalRefreshToken = () => window.localStorage.getItem('spotify_refresh_token');
 
+console.log(window.localStorage)
+
 // Refresh the token
 const refreshAccessToken = async () => {
   try {
@@ -30,6 +32,7 @@ const refreshAccessToken = async () => {
 // Get access token off of query params (called on application init)
 export const getAccessToken = () => {
   const { error, access_token, refresh_token } = getHashParams();
+  console.log(error, access_token, refresh_token)
 
   if (error) {
     console.error("HASH PARAMS", error);
@@ -305,7 +308,6 @@ export const getTrackInfo = trackId => {
 export const playTrack = (trackUri, deviceId) => {
   const url = `https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`;
   const body = { uris: [`spotify:track:${trackUri}`] };
-  console.log({headers})
   return axios.put(url, body, {headers});
 }
 
