@@ -305,6 +305,7 @@ export const getTrackInfo = trackId => {
 export const playTrack = (trackUri, deviceId) => {
   const url = `https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`;
   const body = { uris: [`spotify:track:${trackUri}`] };
+  console.log({headers})
   return axios.put(url, body, {headers});
 }
 
