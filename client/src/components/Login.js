@@ -90,7 +90,7 @@ export default () => (
           </LoginPageText>
           <a href={LOGIN_URI}> 
             <LoginButton>
-              Login with Spotify
+              Login with Spotify Premium
             </LoginButton>
           </a>
         </Login>

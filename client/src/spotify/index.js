@@ -32,7 +32,7 @@ export const getAccessToken = () => {
   const { error, access_token, refresh_token } = getHashParams();
 
   if (error) {
-    console.error(error);
+    console.error("HASH PARAMS", error);
     refreshAccessToken();
   }
 
