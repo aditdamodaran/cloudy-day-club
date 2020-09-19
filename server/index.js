@@ -63,6 +63,7 @@ app
   .use(bodyParser.json())
   .use(
     history({
+      verbose: true,
       rewrites: [
         { from: /\/login/, to: '/login' },
         { from: /\/callback/, to: '/callback' },
@@ -75,6 +76,7 @@ app
  * HOME ROUTE
  */
 app.get('/', (req, res) => {
+  console.log('Getting "/"')
   res.render(path.resolve(__dirname, '../client/build/index.html'));
 })
 
@@ -83,6 +85,7 @@ app.get('/', (req, res) => {
  * (https://github.com/spotify/web-api-auth-examples/blob/master/authorization_code/app.js)
  */
 app.get('/login', function (req, res) {
+  console.log('Getting "/login"')
   const state = generateRandomString(16);
   res.cookie(stateKey, state);
 
@@ -194,6 +197,7 @@ app.get('/refresh_token', function (req, res) {
  * (https://www.npmjs.com/package/color-thief-node)
  */
 app.post('/colors', function(req, res) {
+  console.log('Posting to "/colors"')
   (async () => {
     const dominantColor = await getColorFromURL(req.body.url);
     res.send(dominantColor)
@@ -204,7 +208,8 @@ app.post('/colors', function(req, res) {
  * Let the Frontend handle any other requests
 */
 app.get('*', function (req, res) {
-  res.sendFile(path.resolve(__dirname, '../client/public', 'index.html'));
+  // res.sendFile(path.resolve(__dirname, '../client/public', 'index.html'));
+  res.render(path.resolve(__dirname, '../client/build/index.html'));
 });
 
 // Start Server
