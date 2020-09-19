@@ -203,7 +203,8 @@ app.post('/colors', function(req, res) {
  * Let the Frontend handle any other requests
 */
 app.get('*', function (req, res) {
-  res.sendFile(path.resolve(__dirname, '../client/public', 'index.html'));
+  // res.sendFile(path.resolve(__dirname, '../client/public', 'index.html'));
+  res.render(path.resolve(__dirname, '../client/build/index.html'));
 });
 
 // Start Server
