@@ -64,7 +64,7 @@ class Playlists extends React.Component {
             playlists.items.map((playlist) => (
               <PlaylistContainer
                 key={playlist.id}
-                link={playlist.id}
+                link={`playlist/${playlist.id}`}
                 name={playlist.name}
                 image={playlist.images[0].url}
               />

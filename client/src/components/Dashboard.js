@@ -41,7 +41,7 @@ const Dashboard = () => (
       <InterfaceContainer>
         <Router>
           <Playlists path="/" />
-          <Playlist path="/:playlistId" />
+          <Playlist path="/playlist/:playlistId" />
         </Router>
       </InterfaceContainer>
       <PlayerContainer />

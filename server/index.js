@@ -197,7 +197,6 @@ app.get('/refresh_token', function (req, res) {
  * (https://www.npmjs.com/package/color-thief-node)
  */
 app.post('/colors', function(req, res) {
-  console.log('Posting to "/colors"')
   (async () => {
     const dominantColor = await getColorFromURL(req.body.url);
     res.send(dominantColor)
@@ -208,8 +207,7 @@ app.post('/colors', function(req, res) {
  * Let the Frontend handle any other requests
 */
 app.get('*', function (req, res) {
-  // res.sendFile(path.resolve(__dirname, '../client/public', 'index.html'));
-  res.render(path.resolve(__dirname, '../client/build/index.html'));
+  res.sendFile(path.resolve(__dirname, '../client/public', 'index.html'));
 });
 
 // Start Server
