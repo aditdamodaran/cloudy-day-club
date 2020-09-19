@@ -65,8 +65,7 @@ app
       rewrites: [
         { from: /\/login/, to: '/login' },
         { from: /\/callback/, to: '/callback' },
-        { from: /\/refresh_token/, to: '/refresh_token' },
-        { from: /^\/playlist\/.*$/, to: '/' }
+        { from: /\/refresh_token/, to: '/refresh_token' }
       ],
     }),
   )

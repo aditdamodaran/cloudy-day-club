@@ -40,8 +40,8 @@ const Dashboard = () => (
       </NavbarContainer>
       <InterfaceContainer>
         <Router>
-          <Playlists path="/"/>
-          <Playlist path="/playlist/:playlistId" />
+          <Playlists path="/" />
+          <Playlist path="/:playlistId" />
         </Router>
       </InterfaceContainer>
       <PlayerContainer />
