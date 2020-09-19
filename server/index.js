@@ -17,6 +17,7 @@ const PORT = process.env.PORT || 8888;
 if (process.env.NODE_ENV !== 'production') {
   REDIRECT_URI = 'http://localhost:8888/callback';
   FRONTEND_URI = 'http://localhost:3000';
+
 }
 
 /**
@@ -73,7 +74,7 @@ app
 /**
  * HOME ROUTE
  */
-app.get('/', (req, res) => {
+app.get('/*', (req, res) => {
   res.render(path.resolve(__dirname, '../client/build/index.html'));
 })
 
@@ -203,8 +204,7 @@ app.post('/colors', function(req, res) {
  * Let the Frontend handle any other requests
 */
 app.get('*', function (req, res) {
-  // res.sendFile(path.resolve(__dirname, '../client/public', 'index.html'));
-  res.render(path.resolve(__dirname, '../client/build/index.html'));
+  res.sendFile(path.resolve(__dirname, '../client/public', 'index.html'));
 });
 
 // Start Server
