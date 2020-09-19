@@ -55,6 +55,8 @@ const generateRandomString = function (length) {
  */
 const stateKey = 'spotify_auth_state';
 const app = express();
+// Priority serve any static files.
+app.use(express.static(path.resolve(__dirname, '../client/build')));
 app
   .use(express.static(path.resolve(__dirname, '../client/build')))
   .use(cors())
@@ -71,6 +73,7 @@ app
       ],
     }),
   )
+  .use(express.static(path.resolve(__dirname, '../client/build')));
 
 /**
  * HOME ROUTE
