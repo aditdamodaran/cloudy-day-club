@@ -1,0 +1,128 @@
+.fadeInFast {
+  animation-name: fadeInFast;
+  animation-duration: 1.5s;
+  // animation-fill-mode: forwards;
+}
+
+@keyframes fadeInFast {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeInSlow {
+  animation-name: fadeInSlow;
+  animation-duration: 2s;
+  // animation-fill-mode: forwards;
+}
+
+.fadeInSlower {
+  animation-name: fadeInSlower;
+  animation-duration: 3s;
+  // animation-fill-mode: forwards;
+}
+
+@keyframes fadeInSlow {
+  0% { opacity:0; }
+  50% { opacity:0; }
+  100% { opacity:1; }
+}
+
+@keyframes fadeInSlower {
+  0% { opacity:0; }
+  75% { opacity:0; }
+  100% { opacity:1; }
+}
+
+.slideUp {
+  animation-name: slideUp;
+  animation-duration: 4s;
+}
+
+@keyframes slideUp {
+  0% { transform: translate(0px, 1000px); }
+  75% { transform: translate(0px, 1000px); }
+  100% { transform:  translate(0px,0px) ; }
+}
+
+.becomeTransparent {
+  animation-name: becomeTransparent;
+  animation-duration: 3s;
+}
+
+@keyframes becomeTransparent {
+  0% {background-color:rgba(27,27,27, 1);}
+  99% {background-color:rgba(27,27,27, 1);}
+  100% {background-color:rgba(0,0,0, 0);}
+}
+
+.purpleToWhite {
+  animation-name: purpletoWhite;
+  animation-duration: 4s;
+}
+
+@keyframes purpletoWhite {
+  0% {color: white; }
+  75% {color: white; }
+  100% {color: #bd86f4; }
+}
+
+.blueToWhite {
+  animation-name: bluetoWhite;
+  animation-duration: 4s;
+}
+
+@keyframes bluetoWhite {
+  0% {color:white; }
+  75% {color: white; }
+  100% {color: #55abfc; }
+}
+
+
+.greenToWhite {
+  animation-name: greenToWhite;
+  animation-duration: 4s;
+}
+
+@keyframes greenToWhite {
+  0% {color: white; }
+  75% {color: white; }
+  100% {color: #1BB954; }
+}
+
+.yellowToWhite {
+  animation-name: yellowToWhite;
+  animation-duration: 4s;
+}
+
+@keyframes yellowToWhite {
+  0% {color: white; }
+  75% {color: white; }
+  100% {color: #fff568; }
+}
+
+.orangeToWhite {
+  animation-name: orangeToWhite;
+  animation-duration: 4s;
+}
+
+@keyframes orangeToWhite {
+  0% {color: white; }
+  75% {color: white; }
+  100% {color: #fbaf5d; }
+}
+
+.redToWhite {
+  animation-name: redToWhite;
+  animation-duration: 4s;
+}
+
+@keyframes redToWhite {
+  0% {color: white; }
+  75% {color: white; }
+  100% {color: #f9471b; }
+}

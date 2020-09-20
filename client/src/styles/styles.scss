@@ -2,6 +2,8 @@
 @import '../../node_modules/normalize.css/normalize.css';
 // Base Styles
 @import './base/base';
+// Animations
+@import './base/animations';
 // Component Specific Styles
 @import './components/login';
 @import './components/player';

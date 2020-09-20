@@ -1,6 +1,11 @@
 import axios from 'axios';
 import { getHashParams } from '../utils';
 
+const LOGIN_URI =
+  process.env.NODE_ENV !== 'production'
+    ? 'http://localhost:3000'
+    : 'https://cloudy-day-club.herokuapp.com';
+
 // TOKENS ******************************************************************************************
 const EXPIRATION_TIME = 3600 * 1000; // 3600 seconds * 1000 = 1 hour in milliseconds
 
@@ -65,7 +70,7 @@ export const logout = () => {
   window.localStorage.removeItem('spotify_token_timestamp');
   window.localStorage.removeItem('spotify_access_token');
   window.localStorage.removeItem('spotify_refresh_token');
-  window.location.reload();
+  window.location = LOGIN_URI;
 };
 
 // API CALLS ***************************************************************************************
