@@ -45,6 +45,7 @@ const ColorContainer = styled.div`
   height: 100%;
   display: flex;
   width: 100%;
+  overflow-y: hidden;
   background: ${bgColor};
   position: absolute;
   filter: brightness(.8) saturate(0.5);
@@ -76,6 +77,7 @@ const Login = styled.div`
     text-align: center;
     padding: 1rem;
     margin: 0 auto;
+    height: 75%;
     h1 { margin: 0 auto; font-size: 3rem; }
     h2 { margin: 0 auto; font-size: 1rem; }
   }
