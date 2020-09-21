@@ -164,5 +164,5 @@ Distributed under the MIT License. See `LICENSE` for more information.
 [issues-url]: https://github.com/aditdamodaran/cloudy-day-club/issues
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/adit-damodaran-1a0245108
-[product-screenshot]: https://lh3.googleusercontent.com/pw/ACtC-3eY9tq4mF3FnyNijQy2DgVvAuWBUZNN3tdKx3D0HQHq_WDltQdIervZsJEDwcebvy-2jQNTOv6X8QL-q_rlymNBnlcMaET6BN4ahxE2Q0NHCAQsdRu0pR6NZGOeO1XAbFhtpLpFNoOnna3-8IpTtTX4=w2640-h1650-no?authuser=0
+[product-screenshot]: https://lh3.googleusercontent.com/pw/ACtC-3dwF1aZWcrhbQ9ZSRITYOi4tOFgVdOI_4OPRD4wyeci6w0ypinsbXs1zsTzFQ92MdWF1Ajqu9S5AxbPnKhDrZdvqHoQx0upBw_3CyURCPee-FPfMd0nWas-wAGwD3fuKYX7s_jirbLZKmkOLHgvl-Ie=w2624-h1640-no?authuser=0
 [product-screenshot-2]: https://lh3.googleusercontent.com/pw/ACtC-3d1roQRqgzJdE5iz2r8SERllsKbI_ucjeptJnQanOHqgrT7b-xOLOGqEncn13GDXRp6iZEepxvhz1W32NsuZv0T4uyC0Zp_-7poWpuwHj5RJjRbdc11wP08ZDHu1L3R0fWhFOwTmG_m8wTeHWuz37cb=w2624-h1640-no?authuser=0
