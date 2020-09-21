@@ -65,11 +65,20 @@ const Login = styled.div`
   width: 100%;
   height: 50%;
   padding: 4rem;
+  overflow: hidden;
   color: ${props => props.theme.login.white};
   font-family: -apple-system, BlinkMacSystemFont, sans-serif; 
   margin: 0;
   h1 { margin: 0; font-size: 4.5rem; }
   h2 { margin: 0; font-size: 1.75rem; }
+
+  @media (max-width: ${'768px'}) {
+    text-align: center;
+    padding: 1rem;
+    margin: 0 auto;
+    h1 { margin: 0 auto; font-size: 3rem; }
+    h2 { margin: 0 auto; font-size: 1rem; }
+  }
 `
 
 const LoginButton = styled.button`
@@ -91,9 +100,6 @@ const LoginButton = styled.button`
 const LoginPageText = styled.h2`
   padding-top: 1rem;
   padding-bottom: 1rem;
-  /* span.spotify-green {
-    color: ${props => props.theme.spotifygreen};
-  } */
 `
 
 const Notices = styled.p`
@@ -102,6 +108,10 @@ const Notices = styled.p`
   font-weight: 200;
   font-size: 1.1rem;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif; 
+
+  @media (max-width: ${'768px'}) {
+    font-size: 1rem;
+  }
 `
 
 export default () => (
