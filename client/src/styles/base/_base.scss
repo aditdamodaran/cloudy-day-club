@@ -41,3 +41,9 @@ $desktop: 1280;
     @content;
   }
 }
+
+@include mobile {
+  body {
+    position: fixed;
+  }
+}
