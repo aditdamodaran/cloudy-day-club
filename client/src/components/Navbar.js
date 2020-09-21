@@ -40,7 +40,7 @@ const LogoutIcon = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-self: end;
+  align-self: flex-end;
   filter: brightness(0) invert(1);
   opacity: 0.8;
   transition: opacity 0.1s;
@@ -70,7 +70,7 @@ const Navigation = styled.nav`
 
 const Navbar = () => (
   <NavigationContainer>
-    <Navigation>
+    <Navigation className="fadeInFast">
       <NavIcon>
         <Link to='/' className="nav-icon">
           <img src={playlistsIcon} alt="playlists" />

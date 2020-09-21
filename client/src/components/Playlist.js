@@ -3,8 +3,10 @@ import { getPlaylist, getAudioFeaturesForTracks } from '../spotify';
 import { catchErrors } from '../utils'
 import { connect } from 'react-redux'
 import { playTrack } from '../actions/playerControls'
+import Loader from '../components/Loader'
 import styled from 'styled-components/macro';
 import playIcon from '../icons/play-icon-circular.svg'
+import soundIcon from '../icons/sound-icon-circular.svg'
 import _ from 'lodash'
 
 const PlaylistHeaderContainer = styled.div`
@@ -140,7 +142,8 @@ class Playlist extends Component {
       playlist: null,
       tracks: null,
       audioFeatures: null,
-      combined: {}
+      combined: {},
+      paused: false,
     };
   }
 
@@ -206,6 +209,7 @@ class Playlist extends Component {
     if (!this.props.playback.pauseTrack || (
       this.props.playback.uri !== uri
     )){
+      // Dispatch playTrack action
       this.props.playTrack({
         albumArt,
         uri,
@@ -216,6 +220,7 @@ class Playlist extends Component {
 
   render() {
     const { combined, playlist } = this.state;
+    console.log(this.props.playback.pauseTrack)
  
     return (
       <div>
@@ -235,44 +240,56 @@ class Playlist extends Component {
             </SubHeader>
           </PlaylistInfo>
         </PlaylistHeaderContainer>
-        : <div>Loading</div>}
-        <PlaylistItems>
-          <thead>
-            <tr>
-              <th>{/*Play Btns.*/}</th>
-              <th>NAME</th>
-              <th>ARTIST</th>
-              <th>LENGTH</th>
-            </tr>
-          </thead>
-          <tbody>
-            {Object.keys(combined).length !== 0 ? 
-              (Object.keys(combined).map((key, idx) => (
-                  <tr key={key}>
-                    <td>
-                      {this.props.playback.playerReady 
-                        ? <img alt="play-icon" 
-                            src={playIcon} 
-                            tabIndex={idx+1}
-                            onKeyDown={(event) => {
-                              if(event.key === 'Enter'){
-                                this.handlePlay(combined[key].albumArt, key, combined[key].trackName)
-                              }
-                            }}
-                            onClick={() => 
-                              this.handlePlay(combined[key].albumArt, key, combined[key].trackName)
-                            }
-                          />
-                        : <img alt="play-icon-loading" src={playIcon} />}
-                    </td>
-                    <td><TableText>{combined[key].trackName}</TableText></td>
-                    <td><TableText>{combined[key].trackArtist}</TableText></td>
-                    <td>{this.formatTime(combined[key].trackLength)}</td>
+        : <Loader />}
+        {Object.keys(combined).length !== 0 
+          ? <div className="fadeinFast">
+              <PlaylistItems>
+                <thead>
+                  <tr>
+                    <th>{/*Play Btns.*/}</th>
+                    <th>NAME</th>
+                    <th>ARTIST</th>
+                    <th>LENGTH</th>
                   </tr>
-                )))
-              : <tr><td>Loading</td></tr>}
-          </tbody>
-        </PlaylistItems>
+                </thead>
+                <tbody>
+                  {Object.keys(combined).map((key, idx) => (
+                      <tr key={key}>
+                        <td>
+                          {this.props.playback.playerReady 
+                            ? ( (this.props.playback.uri === key)
+                              ? <img alt="now-playing-icon" 
+                                  src={soundIcon} 
+                                  tabIndex={idx+1}
+                                  style={{
+                                    opacity: '0.3',
+                                    cursor: 'unset',
+                                    outline: 'none'
+                                  }}
+                                />
+                              : <img alt="play-icon" 
+                                  src={playIcon} 
+                                  tabIndex={idx+1}
+                                  onKeyDown={(event) => {
+                                    if(event.key === 'Enter'){
+                                      this.handlePlay(combined[key].albumArt, key, combined[key].trackName)
+                                    }
+                                  }}
+                                  onClick={() => 
+                                    this.handlePlay(combined[key].albumArt, key, combined[key].trackName)
+                                  }
+                                />)
+                            : <img alt="play-icon-loading" src={playIcon} />}
+                        </td>
+                        <td><TableText>{combined[key].trackName}</TableText></td>
+                        <td><TableText>{combined[key].trackArtist}</TableText></td>
+                        <td>{this.formatTime(combined[key].trackLength)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </PlaylistItems>
+              </div>
+            : <Loader />}
       </div>
     )
   }

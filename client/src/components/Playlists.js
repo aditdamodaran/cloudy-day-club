@@ -4,14 +4,21 @@ import { catchErrors } from '../utils'
 import styled from 'styled-components/macro';
 import PlaylistContainer from './PlaylistContainer'
 import { cachePlaylists } from '../actions/cachePlaylists';
+import Loader from '../components/Loader'
 import { connect } from 'react-redux'
 
 const PlaylistsGridContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 90%;
-  margin: 0 auto;
+  min-height: 75vh;
+  margin: 2rem auto;
+  margin-bottom: 5rem;
+  flex-wrap: wrap;
 `
 
 const PlaylistsHeader= styled.h2`
+  flex-basis: 100%;
   color: white;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif; 
   font-size: 2rem;
@@ -59,17 +66,18 @@ class Playlists extends React.Component {
     return (
       <PlaylistsGridContainer>
         <PlaylistsHeader>Playlists</PlaylistsHeader>
-        <PlaylistsGrid id="playlist-grid">
-          {playlists ? 
-            playlists.items.map((playlist) => (
+          {playlists ?
+            <PlaylistsGrid id="playlist-grid">
+            {playlists.items.map((playlist) => (
               <PlaylistContainer
                 key={playlist.id}
                 link={`playlist/${playlist.id}`}
                 name={playlist.name}
                 image={playlist.images[0].url}
               />
-          )) : <div>Loader</div>}
-        </PlaylistsGrid>
+            ))}
+            </PlaylistsGrid>
+          : <Loader />}
       </PlaylistsGridContainer>
     )
   }

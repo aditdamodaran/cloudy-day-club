@@ -50,17 +50,7 @@ const CircularContainer = styled.div`
 const TogglePlay = styled.img`
   z-index: 1;
   width: 50%;
-  /* border: 1px solid ${this.props.lightText ? 'white' : 'black'}; */
 `
-
-// const SliderContainer = styled.div`
-//   width: 100%;
-//   display: flex;
-// `
-// const Slider = styled.input`
-//   width: 50%;
-//   margin: 0 auto;
-// `
 
 class Player extends Component {
   constructor(props) {
@@ -146,7 +136,6 @@ class Player extends Component {
 
   executePlaySong(uri){
     if (this.deviceId){
-      // console.log('executePlaySong', uri)
       playTrack(uri, this.deviceId)
     }
   }
@@ -162,7 +151,7 @@ class Player extends Component {
 
   render() {
     return (
-      <PlayerSection>
+      <PlayerSection className="fadeInFast">
         <AlbumArt id="album-art" 
           src={this.props.playback.albumArt ? this.props.playback.albumArt : spotifyLogo} 
         />
@@ -177,11 +166,6 @@ class Player extends Component {
         </NowPlaying>
         {this.state.playerReady && this.props.playback.uri !== "" ?
           (<ControlsContainer>
-            
-            {/*<SliderContainer>
-              <Slider type="range" min="1" max="100" value={this.calcSliderPosition()} />
-            </SliderContainer>*/}
-            {/*<button onClick={() => this.executePlaySong(this.props.playback.uri.toString())}>Start from Beginning</button>*/}
               <CircularContainer
                 style={{
                   border: `${this.props.lightText ? '3px solid white' : '3px solid black'}`
