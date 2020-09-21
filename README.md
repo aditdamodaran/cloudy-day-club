@@ -9,7 +9,7 @@
   <h3 align="center">Cloudy Day Club</h3>
 
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+![Product Name Screen Shot][product-screenshot]
 
   <p align="center">
 	<b>Cloudy Day Club is a Spotify Web Player with a splash of color for those drab cloudy days.</b> Listen to your favorite songs on your most recent playlists on the browser of your choice. 
@@ -39,7 +39,7 @@
 
 ## About
 
-[![Product Name Screen Shot][product-screenshot-2]](https://example.com)
+![Brakelights][product-screenshot-2]
 
 Spotify's web and desktop apps are amazing feats of engineering, but the experience is primarily through audio that plays in the background. The mobile app is pushing these boundaries with repeating GIFs curated by artists and lyrics served from Genius. 
 
@@ -165,4 +165,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/adit-damodaran-1a0245108
 [product-screenshot]: https://lh3.googleusercontent.com/pw/ACtC-3eY9tq4mF3FnyNijQy2DgVvAuWBUZNN3tdKx3D0HQHq_WDltQdIervZsJEDwcebvy-2jQNTOv6X8QL-q_rlymNBnlcMaET6BN4ahxE2Q0NHCAQsdRu0pR6NZGOeO1XAbFhtpLpFNoOnna3-8IpTtTX4=w2640-h1650-no?authuser=0
-[product-screenshot-2]: https://lh3.googleusercontent.com/uR1EwtwHC33RDaDzbnFk3c2oS5fU-Jm-pI0XBNh10G2_aapVP8Ir-udgjEiy-uhRBR8NCUJ8Nyddvz6CiMRbL2Pq4GUfrxmFO5P2bq1sZ_a18d__ZAjX46GF4Cb3HZXM60TV2bBZTaDvm-bnhQQ-Z_5eUVJ2_C32HweG4NAKrNjh7M_Qn7RYpB2Wfx7vdxDE0ycnmCAFdZOHecJdHQTsdlyi5w91ldbHZfFLpEoty9SSkB9dDOuKprkVaRrGtELr4oxKIN6na649Z90hgV40_mtGfG_Gg-U1KWzB_ArSTkSdyRCTAQTA8wpGL3eEsPIUztdrNoxBUKwzU0_wJgogXgbYCwbgobVyUyETN_VyJSQimzvgWeMM84TTCy-H1z1FpKh6JMVVqKSRopjcy8bgJIaw31nGqEwbuyu9fg303sWDJbjap3DF4AZIikxTh3nyMHdOcGycs7eMsPTHROnMNq4Hx7bcfXfqE72XdVCl5XFb8Xqgku6oWZaVZGjv-w-77j6eJ55SwprcfWhStit6Sc3EFpisaEA-BtzZsB2tE-YRQBV2K1piy08_l9Dy9jwSN7QzoFaBx9Ly2V8yOGxbJ8H6UqJNzTUl7N-5roI_N2cKaOmoOw_ff4l16ptNhtzOcUuGNYH516fXTY4uNPQtdP7Yj0Vi0XH9pBeS_PFkio8akpNaw-4Kh9CxYhXuog=w2624-h1640-no?authuser=0
+[product-screenshot-2]: https://lh3.googleusercontent.com/pw/ACtC-3d1roQRqgzJdE5iz2r8SERllsKbI_ucjeptJnQanOHqgrT7b-xOLOGqEncn13GDXRp6iZEepxvhz1W32NsuZv0T4uyC0Zp_-7poWpuwHj5RJjRbdc11wP08ZDHu1L3R0fWhFOwTmG_m8wTeHWuz37cb=w2624-h1640-no?authuser=0
