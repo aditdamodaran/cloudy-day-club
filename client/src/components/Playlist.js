@@ -220,7 +220,6 @@ class Playlist extends Component {
 
   render() {
     const { combined, playlist } = this.state;
-    console.log(this.props.playback.pauseTrack)
  
     return (
       <div>
