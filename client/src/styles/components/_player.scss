@@ -1,19 +1,33 @@
 
-.test.enter{
+// Switching Songs
+.player-container.enter-active {
   transition: 1s ease-out;
+  // background: blue;
 }
-.test.enter-active {
-  transition: 1s ease-out;
-}
-.test.enter-done {
+
+.player-container.exit-active {
   transition: 1s ease-out;
 }
 
-.test.exit {
+// State when song is playing
+.player-container.enter-done {
   transition: 1s ease-out;
+  // background: green;
 }
-.test.exit-active {
+
+// Overlaps with enter-active and exit-active
+.player-container.enter{
   transition: 1s ease-out;
+  // background: purple;
 }
-.test.exit-done{
+
+.player-container.exit {
+  transition: 1s ease-out;
+  // background: yellow;
+}
+
+// Never really used
+.player-container.exit-done{
+  transition: 1s ease-out;
+  // background: red;
 }

@@ -55,8 +55,8 @@ class PlayerContainer extends Component {
     return (
       <CSSTransition
         in={(this.props.playback.trackName === this.state.trackName)} 
-        timeout={300}
-        className="test"
+        timeout={800}
+        className="player-container"
         nodeRef={this.nodeRef}
       >
         <PlayerPageContainer 
