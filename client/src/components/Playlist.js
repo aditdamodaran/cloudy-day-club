@@ -229,9 +229,9 @@ class Playlist extends Component {
           <PlaylistInfo>
             <PlaylistHeader>{playlist.name}</PlaylistHeader>
             <SubHeader>
-            <PlaylistCreator>By: @ 
+            <PlaylistCreator>{`By: `}   
               <a href={playlist.owner.external_urls.spotify}>
-                {playlist.owner.id}
+                {playlist.owner.display_name}
               </a></PlaylistCreator>
               <OpenWithSpotify href={playlist.external_urls.spotify}>
                 Open this playlist with Spotify
