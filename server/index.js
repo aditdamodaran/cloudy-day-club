@@ -17,7 +17,6 @@ const PORT = process.env.PORT || 8888;
 if (process.env.NODE_ENV !== 'production') {
   REDIRECT_URI = 'http://localhost:8888/callback';
   FRONTEND_URI = 'http://localhost:3000';
-
 }
 
 /**

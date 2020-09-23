@@ -21,7 +21,7 @@ const bgColor = colorsMap[idx]
 const LOGIN_URI =
   process.env.NODE_ENV !== 'production'
     ? 'http://localhost:8888/login'
-    : 'https://www.cloudyday.club/login';
+    : 'https://cloudy-day-club.herokuapp.com/login';
 
 const PageContainer = styled.div`
   width: 100%;

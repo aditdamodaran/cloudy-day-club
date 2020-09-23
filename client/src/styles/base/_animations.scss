@@ -1,7 +1,6 @@
 .fadeInFast {
   animation-name: fadeInFast;
   animation-duration: 1.5s;
-  // animation-fill-mode: forwards;
 }
 
 @keyframes fadeInFast {
@@ -17,13 +16,11 @@
 .fadeInSlow {
   animation-name: fadeInSlow;
   animation-duration: 2s;
-  // animation-fill-mode: forwards;
 }
 
 .fadeInSlower {
   animation-name: fadeInSlower;
   animation-duration: 3s;
-  // animation-fill-mode: forwards;
 }
 
 @keyframes fadeInSlow {

@@ -4,7 +4,7 @@ import { getHashParams } from '../utils';
 const LOGIN_URI =
   process.env.NODE_ENV !== 'production'
     ? 'http://localhost:3000'
-    : 'https://www.cloudyday.club';
+    : 'https://cloudy-day-club.herokuapp.com';
 
 // TOKENS ******************************************************************************************
 const EXPIRATION_TIME = 3600 * 1000; // 3600 seconds * 1000 = 1 hour in milliseconds

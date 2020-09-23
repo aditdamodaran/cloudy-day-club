@@ -31,7 +31,7 @@
     "eject": "react-scripts eject"
   },
   "proxy": "http://localhost:8888",
-  "homepage": "https://www.cloudyday.club",
+  "homepage": "https://cloudy-day-club.herokuapp.com",
   "eslintConfig": {
     "extends": "react-app"
   },
