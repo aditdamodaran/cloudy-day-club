@@ -4,6 +4,7 @@ import { catchErrors } from '../utils'
 import styled from 'styled-components/macro';
 import PlaylistContainer from './PlaylistContainer'
 import { cachePlaylists } from '../actions/cachePlaylists';
+import defaultPlaylistCover from '../icons/default-playlist-cover.svg'
 import Loader from '../components/Loader'
 import { connect } from 'react-redux'
 
@@ -73,7 +74,10 @@ class Playlists extends React.Component {
                 key={playlist.id}
                 link={`playlist/${playlist.id}`}
                 name={playlist.name}
-                image={playlist.images[0].url}
+                image={
+                  playlist.images.length !== 0 
+                  ? playlist.images[0].url 
+                  : defaultPlaylistCover}
               />
             ))}
             </PlaylistsGrid>

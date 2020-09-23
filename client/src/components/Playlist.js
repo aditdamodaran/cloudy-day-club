@@ -3,66 +3,14 @@ import { getPlaylist, getAudioFeaturesForTracks } from '../spotify';
 import { catchErrors } from '../utils'
 import { connect } from 'react-redux'
 import { playTrack } from '../actions/playerControls'
+import { PlaylistHeader } from './Playlist/PlaylistHeader'
+import { PlayButton } from './Playlist/PlayButton'
+import playIcon from '../icons/play-icon-circular.svg'
+import defaultPlaylistCover from '../icons/default-playlist-cover.svg'
 import Loader from '../components/Loader'
 import styled from 'styled-components/macro';
-import playIcon from '../icons/play-icon-circular.svg'
-import soundIcon from '../icons/sound-icon-circular.svg'
 import _ from 'lodash'
 
-const PlaylistHeaderContainer = styled.div`
-  margin: 2rem auto;
-  width: 90%;
-  display: flex;
-  img {
-    display: flex;
-    width: 12.5vw;
-    height: 12.5vw;
-    object-fit: cover;
-  }
-`
-
-const PlaylistInfo = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  flex-basis: 70%;
-  flex-grow: 1;
-  margin-left: 1rem;
-  width: 90%;
-  color: white;
-`
-
-const PlaylistHeader = styled.h1` 
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif; 
-  margin: 0 0;
-  margin-bottom: 2rem;
-  font-size: 2.5rem;
-  width: 90%;
-  align-self: flex-start;
-`
-
-const SubHeader = styled.div`
-  align-self: flex-end;
-`
-
-const PlaylistCreator = styled.h3`
-  width: 100%;
-  display: block;  
-  color: white;
-  font-weight: 500;
-  font-size: 1rem;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif; 
-  margin: 0;
-  margin-bottom: 0.3rem;
-  a {
-    color: white;
-  }
-`
-
-const OpenWithSpotify = styled.a`
-  margin: 0;
-  color: white;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif; 
-`
 
 const PlaylistItems = styled.table`
   color: white;
@@ -138,6 +86,7 @@ const TableText = styled.div`
 class Playlist extends Component {
   constructor(props){
     super(props)
+    this.handlePlay = this.handlePlay.bind(this)
     this.state = {
       playlist: null,
       tracks: null,
@@ -223,23 +172,18 @@ class Playlist extends Component {
  
     return (
       <div>
-        {playlist ?
-        <PlaylistHeaderContainer>
-          <img alt={`Playlist cover for ${playlist.name}`} src={playlist.images[0].url} />
-          <PlaylistInfo>
-            <PlaylistHeader>{playlist.name}</PlaylistHeader>
-            <SubHeader>
-            <PlaylistCreator>{`By: `}   
-              <a href={playlist.owner.external_urls.spotify}>
-                {playlist.owner.display_name}
-              </a></PlaylistCreator>
-              <OpenWithSpotify href={playlist.external_urls.spotify}>
-                Open this playlist with Spotify
-              </OpenWithSpotify>
-            </SubHeader>
-          </PlaylistInfo>
-        </PlaylistHeaderContainer>
-        : <Loader />}
+        {playlist 
+          ? <PlaylistHeader 
+              name={playlist.name}
+              image={
+                playlist.images.length !== 0 
+                ? playlist.images[0].url 
+                : defaultPlaylistCover}
+              ownerUrl={playlist.owner.external_urls.spotify}
+              ownerName={playlist.owner.display_name}
+              spotifyUrl={playlist.external_urls.spotify}
+            />
+          : <Loader />}
         {Object.keys(combined).length !== 0 
           ? <div className="fadeinFast">
               <PlaylistItems>
@@ -256,28 +200,14 @@ class Playlist extends Component {
                       <tr key={key}>
                         <td>
                           {this.props.playback.playerReady 
-                            ? ( (this.props.playback.uri === key)
-                              ? <img alt="now-playing-icon" 
-                                  src={soundIcon} 
-                                  tabIndex={idx+1}
-                                  style={{
-                                    opacity: '0.3',
-                                    cursor: 'unset',
-                                    outline: 'none'
-                                  }}
+                            ? <PlayButton
+                                  nowPlaying={this.props.playback.uri === key} 
+                                  albumArt={combined[key].albumArt}
+                                  uri={key}
+                                  trackName={combined[key].trackName}
+                                  playOnKeyDown={this.handlePlay.bind(this)}
+                                  playOnClick={this.handlePlay.bind(this)}
                                 />
-                              : <img alt="play-icon" 
-                                  src={playIcon} 
-                                  tabIndex={idx+1}
-                                  onKeyDown={(event) => {
-                                    if(event.key === 'Enter'){
-                                      this.handlePlay(combined[key].albumArt, key, combined[key].trackName)
-                                    }
-                                  }}
-                                  onClick={() => 
-                                    this.handlePlay(combined[key].albumArt, key, combined[key].trackName)
-                                  }
-                                />)
                             : <img alt="play-icon-loading" src={playIcon} />}
                         </td>
                         <td><TableText>{combined[key].trackName}</TableText></td>

@@ -17,7 +17,6 @@ const colorsMap = [
 const idx = Math.floor(Math.random() * (colorsMap.length));
 const bgColor = colorsMap[idx]
 
-
 const LOGIN_URI =
   process.env.NODE_ENV !== 'production'
     ? 'http://localhost:8888/login'

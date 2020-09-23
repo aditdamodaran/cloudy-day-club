@@ -5,7 +5,7 @@ import styled from 'styled-components/macro';
 import { catchErrors } from '../utils'
 import { rgbToHex, calcTextColor } from '../utils';
 import { CSSTransition } from 'react-transition-group'
-import Player from './Player'
+import Player from './Player/Player'
 
 const defaultColor = "#5F2233"
 
@@ -72,11 +72,9 @@ class PlayerContainer extends Component {
   }
 }
 
-
 const mapStateToProps = (state) => {
   const { playback } = state
   return { playback }
 }
-
 
 export default connect(mapStateToProps, undefined)(PlayerContainer)
