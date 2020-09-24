@@ -64,7 +64,7 @@ app
   .use(bodyParser.json())
   .use(
     history({
-      verbose: true,
+      // verbose: true, // uncomment for debugging
       rewrites: [
         { from: /\/login/, to: '/login' },
         { from: /\/callback/, to: '/callback' },

@@ -3,7 +3,6 @@ import Script from 'react-load-script';
 import { connect } from 'react-redux'
 import { setPlayerReady, togglePlay } from '../../actions/playerControls'
 import { getAccessToken, playTrack, resumeTrack } from '../../spotify'
-import { RecordPlayer } from './RecordPlayer';
 import { StandardPlayer } from './StandardPlayer'
 
 class Player extends Component {
@@ -108,14 +107,7 @@ class Player extends Component {
   render() {
     return (
       <div>
-        {this.props.recordPlayer 
-          ? <RecordPlayer 
-              color={this.props.color} 
-              albumArt={this.props.playback.albumArt}
-              lightText={this.props.lightText} 
-              trackName={this.props.playback.trackName}
-            />
-          : <StandardPlayer  
+          <StandardPlayer  
               albumArt={this.props.playback.albumArt}
               lightText={this.props.lightText} 
               trackName={this.props.playback.trackName}
@@ -123,7 +115,7 @@ class Player extends Component {
               uri={this.props.playback.uri}
               paused={this.state.paused}
               togglePlayback={this.togglePlayback.bind(this)}
-            />}
+          />
         <header>
           <Script
             url="https://sdk.scdn.co/spotify-player.js"
