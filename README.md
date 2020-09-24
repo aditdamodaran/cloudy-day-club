@@ -18,7 +18,7 @@
     <br /><i>Cloudy Day Club was crafted with accessibility in mind. It is <u>fully</u> keyboard accessible.</i>
     <br />
     <br />
-    <a href="https://cloudy-day-club.herokuapp.com/">Go to Site.</a>
+    <a href="https://cloudy-day-club.herokuapp.com/">Go to Site</a>
     ·
     <a href="https://github.com/aditdamodaran/cloudy-day-club/issues">Report Bug</a>
     ·
