@@ -12,8 +12,10 @@
 ![Product Name Screen Shot][product-screenshot]
 
   <p align="center">
-	<b>Cloudy Day Club is a Spotify Web Player with a splash of color for those drab cloudy days.</b> Listen to your favorite songs on your most recent playlists on the browser of your choice. 
+    <b>Cloudy Day Club is a Spotify Web Player with a splash of color for those drab cloudy days.</b> 
+    <br /> Listen to your favorite songs on your most recent playlists. 
     <br /><i>Please note, you must be a Premium Spotify User to sign in.</i>
+    <br /><i>Cloudy Day Club was crafted with accessibility in mind. It is <u>fully</u> keyboard accessible.</i>
     <br />
     <br />
     <a href="https://cloudy-day-club.herokuapp.com/">Go to Site.</a>
