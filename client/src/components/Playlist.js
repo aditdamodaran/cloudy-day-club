@@ -166,10 +166,10 @@ class Playlist extends Component {
       })
     }
   }
-
+  
   render() {
     const { combined, playlist } = this.state;
- 
+
     return (
       <div>
         {playlist 

@@ -2,24 +2,9 @@ import React, { Component } from 'react';
 import Script from 'react-load-script';
 import { connect } from 'react-redux'
 import { setPlayerReady, togglePlay } from '../../actions/playerControls'
-import CloudyDayClubLogo from '../../icons/logo.svg'
 import { getAccessToken, playTrack, resumeTrack } from '../../spotify'
-import styled from 'styled-components/macro';
-import { NowPlayingText } from './NowPlayingText';
-import { Controls } from './Controls';
-
-const AlbumArt = styled.img`
-  width: 20vw;
-  height: 20vw;
-  border: none;
-`
-
-const PlayerSection = styled.div`
-  height: 50%;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-`
+import { RecordPlayer } from './RecordPlayer';
+import { StandardPlayer } from './StandardPlayer'
 
 class Player extends Component {
   constructor(props) {
@@ -63,8 +48,10 @@ class Player extends Component {
     this.player.addListener('playback_error', ({ message }) => { console.error(message); });
 
     // Playback status updates
-    this.player.addListener('player_state_changed', state => { 
-      this.setState({ paused: state.paused })
+    this.player.addListener('player_state_changed', state => {
+      if (state){
+        this.setState({ paused: state.paused })
+      } 
     });
 
     // Ready
@@ -120,24 +107,23 @@ class Player extends Component {
 
   render() {
     return (
-      <PlayerSection className="fadeInFast">
-        <AlbumArt id="album-art" 
-          src={
-            this.props.playback.albumArt 
-            ? this.props.playback.albumArt 
-            : CloudyDayClubLogo} 
-        />
-        <NowPlayingText 
-          lightText={this.props.lightText} 
-          trackName={this.props.playback.trackName}
-        />
-        {this.state.playerReady && this.props.playback.uri !== "" 
-          ? <Controls 
+      <div>
+        {this.props.recordPlayer 
+          ? <RecordPlayer 
+              color={this.props.color} 
+              albumArt={this.props.playback.albumArt}
               lightText={this.props.lightText} 
-              togglePlayback={this.togglePlayback.bind(this)}
-              paused={this.state.paused}
+              trackName={this.props.playback.trackName}
             />
-          : <div />}
+          : <StandardPlayer  
+              albumArt={this.props.playback.albumArt}
+              lightText={this.props.lightText} 
+              trackName={this.props.playback.trackName}
+              playerReady={this.state.playerReady}
+              uri={this.props.playback.uri}
+              paused={this.state.paused}
+              togglePlayback={this.togglePlayback.bind(this)}
+            />}
         <header>
           <Script
             url="https://sdk.scdn.co/spotify-player.js"
@@ -146,7 +132,7 @@ class Player extends Component {
             onLoad={this.handleScriptLoad.bind(this)}
           />
         </header>
-      </PlayerSection>
+      </div>
     );
   }
 }

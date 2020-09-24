@@ -2,6 +2,7 @@ import React from 'react';
 import Playlists from './Playlists'
 import Playlist from './Playlist'
 import PlayerContainer from './PlayerContainer'
+import RecordPlayerContainer from './RecordPlayerContainer'
 import Navbar from './Navbar'
 import { Router } from '@reach/router';
 import styled, {ThemeProvider} from 'styled-components/macro';
@@ -44,7 +45,9 @@ const Dashboard = () => (
           <Playlist path="/playlist/:playlistId" />
         </Router>
       </InterfaceContainer>
-      <PlayerContainer />
+      {false 
+        ? <RecordPlayerContainer />
+        : <PlayerContainer />}
     </DashboardContainer>
   </ThemeProvider>
 );

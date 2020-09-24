@@ -6,24 +6,32 @@ import { catchErrors } from '../utils'
 import { rgbToHex, calcTextColor } from '../utils';
 import Player from './Player/Player'
 
-const defaultColor = "#5F2233"
+const PlayerPageSection = styled.div`
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+`
 
 const PlayerPageContainer = styled.div`
-  height: 100%;
+  height: 90%;
   flex-grow: 1;
   flex-basis: 40%;
-  display: grid;
-  place-content: center;
+  flex-wrap: wrap;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
   -webkit-transition: background-color 1.3s ease-in-out;
   -ms-transition: background-color 1.3s ease-in-out;
   transition: background-color 1.3s ease-in-out;
 `
-class PlayerContainer extends Component {
+
+
+class RecordPlayerContainer extends Component {
   constructor(props) {
     super(props);
     this.nodeRef = React.createRef(null);
     this.state = {
-      color: defaultColor,
+      color: this.props.playback.defaultColor,
       lightText: true
     }
   }
@@ -46,7 +54,7 @@ class PlayerContainer extends Component {
         // Same Album (No Update Necessary)
       }
     } else if (prevProps.playback.uri === this.props.playback.uri 
-      && (this.state.color === defaultColor)){
+      && (this.state.color === this.props.playback.defaultColor)){
       // Starting Up Player
     } else {
       // New Song is Playing
@@ -54,15 +62,24 @@ class PlayerContainer extends Component {
   }
 
   render() {
+    // console.log(this.props.playback)
     return (
-      <PlayerPageContainer 
-        ref={this.nodeRef}
+      <PlayerPageSection
         style={{
-          backgroundColor: `${this.state.color}`
+          backgroundColor: `${this.state.color}`,
+          transition: '0.3s'
         }}
       >
-        <Player lightText={this.state.lightText}/>      
-      </PlayerPageContainer>
+        <PlayerPageContainer 
+          ref={this.nodeRef}
+        >
+          <Player 
+            lightText={this.state.lightText} 
+            recordPlayer={true} 
+            color={this.state.color}
+          />
+        </PlayerPageContainer>
+      </PlayerPageSection>
     );
   }
 }
@@ -72,4 +89,4 @@ const mapStateToProps = (state) => {
   return { playback }
 }
 
-export default connect(mapStateToProps, undefined)(PlayerContainer)
+export default connect(mapStateToProps, undefined)(RecordPlayerContainer)

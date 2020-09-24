@@ -40,7 +40,7 @@ export const Controls = ({lightText, togglePlayback, paused}) => (
       onClick={() => togglePlayback()}
       onKeyDown={(event) => {
         if(event.key === 'Enter'){
-          togglePlayback()
+          togglePlayback()        
         }
       }}
     >
