@@ -31,6 +31,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const history = require('connect-history-api-fallback');
 const { getColorFromURL } = require('color-thief-node');
+const compression = require('compression')
 
 /**
  * Generates a random string containing numbers and letters
@@ -62,6 +63,7 @@ app
   .use(cookieParser())
   .use(bodyParser.urlencoded({ extended: true }))
   .use(bodyParser.json())
+  .use(compression())
   .use(
     history({
       // verbose: true, // uncomment for debugging
@@ -78,7 +80,6 @@ app
  * HOME ROUTE
  */
 app.get('/', (req, res) => {
-  console.log('Getting "/"')
   res.render(path.resolve(__dirname, '../client/build/index.html'));
 })
 
@@ -87,7 +88,6 @@ app.get('/', (req, res) => {
  * (https://github.com/spotify/web-api-auth-examples/blob/master/authorization_code/app.js)
  */
 app.get('/login', function (req, res) {
-  console.log('Getting "/login"')
   const state = generateRandomString(16);
   res.cookie(stateKey, state);
 
@@ -112,15 +112,12 @@ app.get('/login', function (req, res) {
  * (https://github.com/spotify/web-api-auth-examples/blob/master/authorization_code/app.js)
  */
 app.get('/callback', function (req, res) {
-  console.log('Getting "/callback"')
   // Requests refresh and access tokens
   // after checking the state parameter
 
   const code = req.query.code || null;
   const state = req.query.state || null;
   const storedState = req.cookies ? req.cookies[stateKey] : null;
-
-  console.log(code, state, storedState)
 
   if (state === null || state !== storedState) {
     res.redirect(`/#${querystring.stringify({ error: 'state_mismatch' })}`);
@@ -165,7 +162,6 @@ app.get('/callback', function (req, res) {
  * (https://github.com/spotify/web-api-auth-examples/blob/master/authorization_code/app.js)
  */
 app.get('/refresh_token', function (req, res) {
-  console.log('Getting "/refresh_token"')
   // requesting access token from refresh token
   const refresh_token = req.query.refresh_token;
   const authOptions = {

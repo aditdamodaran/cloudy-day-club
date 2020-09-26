@@ -9,7 +9,7 @@ import playIcon from '../icons/play-icon-circular.svg'
 import defaultPlaylistCover from '../icons/default-playlist-cover.svg'
 import Loader from '../components/Loader'
 import styled from 'styled-components/macro';
-import _ from 'lodash'
+import merge from 'lodash.merge'
 
 
 const PlaylistItems = styled.table`
@@ -133,7 +133,9 @@ class Playlist extends Component {
         }, obj) ,{}
       );
 
-      const combined = _.merge(tracks, audioFeatures)
+      console.log(tracks, audioFeatures)
+
+      const combined = merge(tracks, audioFeatures)
 
       this.setState({ 
         audioFeatures: data,  

@@ -1,7 +1,6 @@
 import React  from 'react';
 import styled, {ThemeProvider} from 'styled-components/macro';
 import { primaryTheme } from '../styles/themes';
-import { darken } from 'polished'
 import splashscreen from '../static/splashscreen.jpg'
 
 // 7 colors that can be randomly applied
@@ -94,7 +93,7 @@ const LoginButton = styled.button`
   border-radius: 2rem;
   cursor: pointer;
   &:hover {
-    background: ${props => darken(.1, props.theme.spotifygreen)};
+    background: #02A03B;
   }
 `
 
