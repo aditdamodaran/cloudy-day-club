@@ -117,11 +117,9 @@ Spotify's API limits the application to 50 of your most recent playlists, and a 
 This is in its early stages (deployed Sept. 15th, 2020). I have a lot of work to do, which I am very excited about. Feel free to send me a message on LinkedIn or GitHub if you'd like to contribute. Happy to discuss what you think could be improved.
 
 **KNOWN ISSUES:**
+1. If the app has been left standing for long periods of time (or your computer goes to sleep), you may need to refresh the page to get it working. I'm looking into this.
 
-1. Better Bundling. The optimized bundle right now is 92MB, which is enormous. My first goal is to reduce this footprint substantially.
-2. Clearing console logs and other occasional errors.
-3. Refactoring and commenting for clarity.
-4. Ensuring there are no expensive blocking chunks of code (I believe I've used async/await correctly for the most part, but I want to double check this).
+The compressed bundle size is around 81kb for packages and modules and 7.6kb for the main.js code. I might try to improve on this.
 
 **PROPOSED FEATURES:**
 
