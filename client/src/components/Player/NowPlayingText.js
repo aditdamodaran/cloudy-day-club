@@ -7,12 +7,12 @@ const NowPlaying = styled.h1`
   flex-basis: 100%;
   width: 100%;
   font-size: 2.4rem;
-`
+`;
 
-export const NowPlayingText = ({lightText, trackName}) => (
+export default ({ lightText, trackName }) => (
   <NowPlaying
     style={{ color: `${lightText ? 'white' : 'black'}` }}
   >
-    {trackName === "" ? 'Welcome to Cloudy Day Club' : trackName}
+    {trackName === '' ? 'Welcome to Cloudy Day Club' : trackName}
   </NowPlaying>
-)
+);

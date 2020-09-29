@@ -133,8 +133,6 @@ class Playlist extends Component {
         }, obj) ,{}
       );
 
-      console.log(tracks, audioFeatures)
-
       const combined = merge(tracks, audioFeatures)
 
       this.setState({ 

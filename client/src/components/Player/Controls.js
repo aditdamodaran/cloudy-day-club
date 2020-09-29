@@ -7,7 +7,7 @@ const ControlsContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-`
+`;
 
 const CircularContainer = styled.div`
   z-index: 0;
@@ -21,14 +21,14 @@ const CircularContainer = styled.div`
   &:hover {
     opacity: 0.75;
   }
-`
+`;
 
 const TogglePlay = styled.img`
   z-index: 1;
   width: 50%;
-`
+`;
 
-export const Controls = ({lightText, togglePlayback, paused}) => (
+export default ({ lightText, togglePlayback, paused }) => (
   <ControlsContainer>
     <CircularContainer
       style={{
@@ -59,4 +59,4 @@ export const Controls = ({lightText, togglePlayback, paused}) => (
       />
     </CircularContainer>
   </ControlsContainer>
-)
+);

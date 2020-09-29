@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Provider } from 'react-redux'
 import Login from './Login';
 import Dashboard from './Dashboard';
@@ -8,28 +8,22 @@ import '../styles/styles.scss'
 
 const store = configureStore();
 
-class App extends React.Component {
-  state = {
-    token: ''
-  };
+const App = () => {
+  const [authToken, setToken] = useState('')
 
-  componentDidMount() {
-    this.setState({ token });
-  }
+  useEffect(() => {
+    setToken(token)
+  }, [authToken])
 
-  render() {
-    const { token } = this.state;
-    
-    return (
-      <div>
-        {token ? (
-          <Provider store={store}>
-            <Dashboard />
-          </Provider>
-          ) : <Login />}
-      </div>
-    );
-  }
+  return (
+    <div>
+      {token ? (
+        <Provider store={store}>
+          <Dashboard />
+        </Provider>
+      ) : <Login />}
+    </div>
+  )
 }
 
 export default App;

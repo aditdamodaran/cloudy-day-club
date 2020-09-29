@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import CloudyDayClubLogo from '../../icons/logo.svg'
-import { NowPlayingText } from './NowPlayingText';
-import { Controls } from './Controls';
+import NowPlayingText from './NowPlayingText';
+import Controls from './Controls';
 
 const AlbumArt = styled.img`
   width: 20vw;

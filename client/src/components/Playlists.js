@@ -56,7 +56,7 @@ class Playlists extends React.Component {
 
   render() {
     var { playlists } = this.state;
-
+    
     if ( 
       Object.keys(this.props.cache.playlists).length !== 0 
       && !this.state.networkRequestMade
@@ -69,17 +69,17 @@ class Playlists extends React.Component {
         <PlaylistsHeader>Playlists</PlaylistsHeader>
           {playlists ?
             <PlaylistsGrid id="playlist-grid">
-            {playlists.items.map((playlist) => (
-              <PlaylistContainer
-                key={playlist.id}
-                link={`playlist/${playlist.id}`}
-                name={playlist.name}
-                image={
-                  playlist.images.length !== 0 
-                  ? playlist.images[0].url 
-                  : defaultPlaylistCover}
-              />
-            ))}
+              {playlists.items.map((playlist) => (
+                <PlaylistContainer
+                  key={playlist.id}
+                  link={`playlist/${playlist.id}`}
+                  name={playlist.name}
+                  image={
+                    playlist.images.length !== 0 
+                    ? playlist.images[0].url 
+                    : defaultPlaylistCover}
+                />
+              ))}
             </PlaylistsGrid>
           : <Loader />}
       </PlaylistsGridContainer>
