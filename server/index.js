@@ -69,6 +69,7 @@ app
       // verbose: true, // uncomment for debugging
       rewrites: [
         { from: /\/login/, to: '/login' },
+        { from: /\/logout/, to: '/' },
         { from: /\/callback/, to: '/callback' },
         { from: /\/refresh_token/, to: '/refresh_token' }
       ],

@@ -14,12 +14,18 @@ const PlaylistItem = styled.div`
 const PlaylistCoverContainer = styled.div`
   width: 100%;
   display: inline-block;
+  margin-bottom: 0.25rem;
 `
 
 const PlaylistCover = styled.div` 
   width: 100%;
   height: 0;
   padding-bottom: 100%;   
+`
+
+const PlaylistName = styled(Link)`
+  font-weight: 600;
+  font-size: 0.8rem;
 `
 
 export default ({image, link, name}) => (
@@ -32,6 +38,6 @@ export default ({image, link, name}) => (
         />
       </PlaylistCoverContainer>
     </Link>
-    <Link to={link} className="playlist-link">{name}</Link>
+    <PlaylistName to={link} className="playlist-link">{name}</PlaylistName>
   </PlaylistItem>
 )

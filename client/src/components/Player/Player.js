@@ -111,6 +111,7 @@ class Player extends Component {
               albumArt={this.props.playback.albumArt}
               lightText={this.props.lightText} 
               trackName={this.props.playback.trackName}
+              standardView={this.props.standardView}
               playerReady={this.state.playerReady}
               uri={this.props.playback.uri}
               paused={this.state.paused}

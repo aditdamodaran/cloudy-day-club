@@ -1,12 +1,10 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux'
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { getAlbumPrimaryColor } from '../colors'
-import styled from 'styled-components/macro';
-import { catchErrors } from '../utils'
 import { rgbToHex, calcTextColor } from '../utils';
+import { catchErrors } from '../utils'
+import styled from 'styled-components/macro';
 import Player from './Player/Player'
-
-const defaultColor = "#5F2233"
 
 const PlayerPageContainer = styled.div`
   height: 100%;
@@ -14,62 +12,36 @@ const PlayerPageContainer = styled.div`
   flex-basis: 40%;
   display: grid;
   place-content: center;
-  -webkit-transition: background-color 1.3s ease-in-out;
-  -ms-transition: background-color 1.3s ease-in-out;
   transition: background-color 1.3s ease-in-out;
+  -webkit-transition: background-color 1.3s ease-in-out;
+  -moz-transition: background-color 1.3s ease-in-out;
+  -o-transition: background-color 1.3s ease-in-out;
 `
-class PlayerContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.nodeRef = React.createRef(null);
-    this.state = {
-      color: defaultColor,
-      lightText: true
-    }
-  }
+export default () => {
+  const [color, setColor] = useState('#5F2233')
+  const [lightText, setLightText] = useState(true)
+  const [standardView, setStandardView] = useState(true)
+  const albumArtUrl = useSelector(state => state.playback.albumArt)
 
-  // Applies new Color if Album Changes
-  async getAlbumColor(albumArtUrl) {
-    var resp = await getAlbumPrimaryColor(albumArtUrl);
-    const color = rgbToHex(resp.data);
-    const lightText = calcTextColor(resp.data);
-    const trackName = this.props.playback.trackName;
-    this.setState({color, lightText, trackName})
-  }
-
-  componentDidUpdate(prevProps, prevState){
-    if (prevProps.playback.uri !== this.props.playback.uri) {
-      const albumArtUrl = this.props.playback.albumArt;
-      if (albumArtUrl !== prevProps.playback.albumArt){
-        catchErrors(this.getAlbumColor(albumArtUrl));
-      } else {
-        // Same Album (No Update Necessary)
+  useEffect(() => {
+    if (albumArtUrl !== '') {
+      // only run upon playing a song
+      async function updateColors() {
+        var response = await getAlbumPrimaryColor(albumArtUrl);
+        const color = rgbToHex(response.data);
+        const lightText = calcTextColor(response.data);
+        setColor(color)
+        setLightText(lightText)
       }
-    } else if (prevProps.playback.uri === this.props.playback.uri 
-      && (this.state.color === defaultColor)){
-      // Starting Up Player
-    } else {
-      // New Song is Playing
+      
+      catchErrors(updateColors());
     }
-  }
+  }, [albumArtUrl])
 
-  render() {
-    return (
-      <PlayerPageContainer 
-        ref={this.nodeRef}
-        style={{
-          backgroundColor: `${this.state.color}`
-        }}
-      >
-        <Player lightText={this.state.lightText}/>      
-      </PlayerPageContainer>
-    );
-  }
+  return (
+    <PlayerPageContainer style={{ backgroundColor: `${color}` }}>
+      <Player lightText={lightText} standardView={standardView}/> 
+      {/*<button onClick={()=>setStandardView(!standardView)}>Toggle Data View</button>*/}    
+    </PlayerPageContainer>
+  );
 }
-
-const mapStateToProps = (state) => {
-  const { playback } = state
-  return { playback }
-}
-
-export default connect(mapStateToProps, undefined)(PlayerContainer)

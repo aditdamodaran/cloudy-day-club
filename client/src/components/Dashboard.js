@@ -17,19 +17,18 @@ const NavbarContainer = styled.div`
   display: flex;
   justify-content: center;
   overflow-x: hidden;
-  background: darkred;
   height: 100%;
   width: 4rem;
   min-width: 4rem;
   position: fixed;
-  background: ${props => props.theme.spotifydarkgray};
+  background: #0B0B0B;
 `
 /* Margin Left Must = Navbar Container's Width */
 const InterfaceContainer = styled.div`
   overflow-y: scroll;
   margin-left: 4rem;
-  background: #2b2a2a;
-  flex-basis: 55%;
+  flex-basis: 50%;
+  background: ${props => props.theme.spotifydarkgray};
 `
 
 const Dashboard = () => (

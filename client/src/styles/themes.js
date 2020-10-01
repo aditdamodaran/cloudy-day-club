@@ -1,6 +1,6 @@
 export const primaryTheme = {
   spotifygreen: '#1BB954',
-  spotifydarkgray: '#111',
+  spotifydarkgray: '#141414',
   spotifydarkgray2: '#1B1B1B',
   login: {
     background: '#1B1B1B',
