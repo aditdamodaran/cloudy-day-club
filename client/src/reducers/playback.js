@@ -5,7 +5,8 @@ const playbackReducerDefaultState = {
   albumArt: '',
   defaultColor: '#5F2233',
   albumColors: [],
-  trackName: ''
+  trackName: '',
+  artist: ''
 }
 
 export default (state = playbackReducerDefaultState, action) => {
@@ -26,7 +27,8 @@ export default (state = playbackReducerDefaultState, action) => {
         pauseTrack: false,
         uri: action.uri,
         albumArt: action.albumArt,
-        trackName: action.name
+        trackName: action.name,
+        artist: action.artist
       }
     default:
       return state;

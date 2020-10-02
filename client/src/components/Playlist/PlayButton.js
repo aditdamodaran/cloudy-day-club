@@ -7,17 +7,17 @@ const PlayButtonStyle = styled.img`
   opacity: ${props => props.nowPlaying ? '0.3' : '1'};
 `
 
-export const PlayButton = ({nowPlaying, albumArt, uri, trackName, playOnKeyDown, playOnClick}) => (
+export const PlayButton = ({nowPlaying, albumArt, uri, trackName, artist, playOnKeyDown, playOnClick}) => (
   <PlayButtonStyle
     alt="play-icon"
     nowPlaying={nowPlaying}
     src={nowPlaying ? soundIcon : playIcon} 
     tabIndex={0}
-    onKeyDown={(event) => {
-      if(event.key === 'Enter'){
-        playOnKeyDown(albumArt, uri, trackName)
+    onKeyDown={(e) => {
+      if(e.key === 'Enter'){
+        playOnKeyDown(albumArt, uri, trackName, artist)
       }
     }}
-    onClick={() => playOnClick(albumArt, uri, trackName)}
+    onClick={() => playOnClick(albumArt, uri, trackName, artist)}
   />
 )

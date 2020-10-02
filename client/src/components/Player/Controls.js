@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 import playIcon from '../../icons/play-icon.svg'
 import pauseIcon from '../../icons/pause-icon.svg'
@@ -26,37 +26,49 @@ const CircularContainer = styled.div`
 const TogglePlay = styled.img`
   z-index: 1;
   width: 50%;
+  &:focus {
+    outline: ${props => props.userCanClick ? 'unset' : '-webkit-focus-ring-color auto 1px'}
+  }
 `;
 
-export default ({ lightText, togglePlayback, paused }) => (
-  <ControlsContainer>
-    <CircularContainer
-      style={{
-        border: `${
-          lightText 
-          ? '3px solid white' 
-          : '3px solid black'}`
-      }}
-      onClick={() => togglePlayback()}
-      onKeyDown={(event) => {
-        if(event.key === 'Enter'){
-          togglePlayback()        
-        }
-      }}
-    >
-      <TogglePlay 
-        tabIndex={0}
-        src={paused 
-          ? playIcon 
-          : pauseIcon 
-        }
+export default ({ className, lightText, togglePlayback, paused }) => {
+  // Accessibility Minded Toggle Focus -- Assumes User is On Keyboard by Default
+  const [userCanClick, setUserCanClick] = useState(false)     
+  
+  return (
+    <ControlsContainer className={className}>
+      <CircularContainer
         style={{
-          filter: `${
+          border: `${
             lightText 
-            ? 'brightness(0) invert(1)' 
-            : 'brightness(0)'}`
+            ? '3px solid white' 
+            : '3px solid black'}`
         }}
-      />
-    </CircularContainer>
-  </ControlsContainer>
-);
+        onClick={() => {
+          togglePlayback()
+          setUserCanClick(true)
+        }}
+        onKeyDown={(event) => {
+          if(event.key === 'Enter'){
+            togglePlayback()        
+          }
+        }}
+      >
+        <TogglePlay 
+          userCanClick={userCanClick}
+          tabIndex={0}
+          src={paused 
+            ? playIcon 
+            : pauseIcon 
+          }
+          style={{
+            filter: `${
+              lightText 
+              ? 'brightness(0) invert(1)' 
+              : 'brightness(0)'}`
+          }}
+        />
+      </CircularContainer>
+    </ControlsContainer>
+  );
+};

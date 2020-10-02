@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
 import Script from 'react-load-script';
 import { connect } from 'react-redux'
+import styled from 'styled-components'
 import { setPlayerReady, togglePlay } from '../../actions/playerControls'
 import { getAccessToken, playTrack, resumeTrack } from '../../spotify'
 import { StandardPlayer } from './StandardPlayer'
+
+const PlayerContainer = styled.div`
+  width: 100%;
+  height: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
 
 class Player extends Component {
   constructor(props) {
@@ -12,7 +21,6 @@ class Player extends Component {
     this.handleLoadFailure = this.handleLoadSuccess.bind(this);
     this.togglePlayback = this.togglePlayback.bind(this)
     this.cb = this.cb.bind(this);
-    this.nodeRef = React.createRef(null);
     this.state = {
       playerReady: false,
       trackName: "",
@@ -106,17 +114,18 @@ class Player extends Component {
 
   render() {
     return (
-      <div>
-          <StandardPlayer  
-              albumArt={this.props.playback.albumArt}
-              lightText={this.props.lightText} 
-              trackName={this.props.playback.trackName}
-              standardView={this.props.standardView}
-              playerReady={this.state.playerReady}
-              uri={this.props.playback.uri}
-              paused={this.state.paused}
-              togglePlayback={this.togglePlayback.bind(this)}
-          />
+      <PlayerContainer>
+        <StandardPlayer  
+          albumArt={this.props.playback.albumArt}
+          lightText={this.props.lightText} 
+          trackName={this.props.playback.trackName}
+          artist={this.props.playback.artist}
+          standardView={this.props.standardView}
+          playerReady={this.state.playerReady}
+          uri={this.props.playback.uri}
+          paused={this.state.paused}
+          togglePlayback={this.togglePlayback.bind(this)}
+        />
         <header>
           <Script
             url="https://sdk.scdn.co/spotify-player.js"
@@ -125,7 +134,7 @@ class Player extends Component {
             onLoad={this.handleScriptLoad.bind(this)}
           />
         </header>
-      </div>
+      </PlayerContainer>
     );
   }
 }

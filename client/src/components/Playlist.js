@@ -152,7 +152,7 @@ class Playlist extends Component {
     return result
   }
 
-  handlePlay(albumArt, uri, name){
+  handlePlay(albumArt, uri, name, artist){
     // If the track is NOT already playing
     // or if a new track is selected, PLAY
     if (!this.props.playback.pauseTrack || (
@@ -162,7 +162,8 @@ class Playlist extends Component {
       this.props.playTrack({
         albumArt,
         uri,
-        name
+        name,
+        artist
       })
     }
   }
@@ -201,13 +202,14 @@ class Playlist extends Component {
                         <td>
                           {this.props.playback.playerReady 
                             ? <PlayButton
-                                  nowPlaying={this.props.playback.uri === key} 
-                                  albumArt={combined[key].albumArt}
-                                  uri={key}
-                                  trackName={combined[key].trackName}
-                                  playOnKeyDown={this.handlePlay.bind(this)}
-                                  playOnClick={this.handlePlay.bind(this)}
-                                />
+                                nowPlaying={this.props.playback.uri === key} 
+                                albumArt={combined[key].albumArt}
+                                uri={key}
+                                trackName={combined[key].trackName}
+                                artist={combined[key].trackArtist}
+                                playOnKeyDown={this.handlePlay.bind(this)}
+                                playOnClick={this.handlePlay.bind(this)}
+                              />
                             : <img alt="play-icon-loading" src={playIcon} />}
                         </td>
                         <td><TableText>{combined[key].trackName}</TableText></td>

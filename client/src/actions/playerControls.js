@@ -1,8 +1,9 @@
-export const playTrack = ({albumArt, uri, name}) => ({
+export const playTrack = ({albumArt, uri, name, artist}) => ({
   type: 'PLAY_TRACK',
   albumArt,
   uri,
-  name
+  name,
+  artist
 })
 
 export const setPlayerState = ({state}) => {
