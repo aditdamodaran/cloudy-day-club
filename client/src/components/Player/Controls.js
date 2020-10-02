@@ -46,7 +46,7 @@ export default ({ className, lightText, togglePlayback, paused }) => {
         }}
         onClick={() => {
           togglePlayback()
-          setUserCanClick(true)
+          setUserCanClick(true) // Maybe set this via Redux to cache the behavior
         }}
         onKeyDown={(event) => {
           if(event.key === 'Enter'){
