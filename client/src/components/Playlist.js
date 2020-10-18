@@ -1,16 +1,15 @@
-import React, {Component} from 'react';
-import { getPlaylist, getAudioFeaturesForTracks } from '../spotify';
-import { catchErrors } from '../utils'
-import { connect } from 'react-redux'
-import { playTrack } from '../actions/playerControls'
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { PlaylistHeader } from './Playlist/PlaylistHeader'
+import { getPlaylist, getAudioFeaturesForTracks } from '../spotify';
+import { playTrack } from '../actions/playerControls'
 import { PlayButton } from './Playlist/PlayButton'
 import playIcon from '../icons/play-icon-circular.svg'
 import defaultPlaylistCover from '../icons/default-playlist-cover.svg'
 import Loader from '../components/Loader'
-import styled from 'styled-components/macro';
+import { catchErrors, formatTime } from '../utils'
 import merge from 'lodash.merge'
-
+import styled from 'styled-components/macro';
 
 const PlaylistItems = styled.table`
   color: white;
@@ -83,33 +82,31 @@ const TableText = styled.div`
   width: 90%;
 `
 
-class Playlist extends Component {
-  constructor(props){
-    super(props)
-    this.handlePlay = this.handlePlay.bind(this)
-    this.state = {
-      playlist: null,
-      tracks: null,
-      audioFeatures: null,
-      combined: {},
-      paused: false,
-    };
+const handlePlay = (playback, dispatch, albumArt, uri, name, artist) => {
+  // first check that we are in fact playing a different track
+  if (!playback.pauseTrack || playback.uri !== uri) { 
+    dispatch(
+      playTrack({
+      albumArt,
+      uri,
+      name,
+      artist
+    }))
   }
+}
 
-  componentDidMount() {
-    catchErrors(this.getData());
-  }
+export default ({ playlistId }) => {
+  const [playlist, setPlaylist] = useState(undefined)
+  const [playlistTracks, setPlaylistTracks] = useState(undefined)
+  const playback = useSelector(state => state.playback)
+  const dispatch = useDispatch()
 
-  async getData() {
-    const { playlistId } = this.props;
-    const { data } = await getPlaylist(playlistId);
-    this.setState({ playlist: data });
-
-    if (data) {
-      const { playlist } = this.state;
-      const { data } = await getAudioFeaturesForTracks(playlist.tracks.items);
-
-      const audioFeatures = data.audio_features.reduce((obj, item) => (
+  useEffect(() => {
+    async function getData() {
+      const playlistData = await getPlaylist(playlistId);
+      const audioFeaturesData = await getAudioFeaturesForTracks(playlistData.data.tracks.items);
+      
+      const audioFeatures = audioFeaturesData.data.audio_features.reduce((obj, item) => (
         obj[item.id] = {
           acousticness: item.acousticness,
           danceability: item.danceability,
@@ -118,121 +115,99 @@ class Playlist extends Component {
           speechiness: item.speechiness,
           temp: item.tempo,
           valence: item.valence
-        // eslint-disable-next-line no-sequences
+          // eslint-disable-next-line 
         }, obj) ,{}
       );
 
-      const tracks = playlist.tracks.items.map(({track})=>track).reduce((obj, item) => (
+      const tracks = playlistData.data.tracks.items.map(({track})=>track).reduce((obj, item) => (
         obj[item.id] = {
           trackArtist: item.artists[0].name,
           trackLength: item.duration_ms,
           trackName: item.name,
           albumArt: item.album.images[0].url,
           albumName: item.album.name
-        // eslint-disable-next-line no-sequences
+          // eslint-disable-next-line 
         }, obj) ,{}
       );
 
       const combined = merge(tracks, audioFeatures)
-
-      this.setState({ 
-        audioFeatures: data,  
-        combined
-      });
-
+      setPlaylist(playlistData.data)
+      setPlaylistTracks(combined)
     }
-  }
+    
+    catchErrors(getData());
+  }, [playlistId])
 
-  formatTime = ms => {
-    const secs = (ms / 1000) // to seconds
-    const minutes = parseInt(secs / 60) // to minutes
-    let secsLeft = parseInt(secs - (minutes*60))
-    secsLeft = ('0' + secsLeft).slice(-2)
-    const result = `${minutes}:${secsLeft}`
-    return result
-  }
-
-  handlePlay(albumArt, uri, name, artist){
-    // If the track is NOT already playing
-    // or if a new track is selected, PLAY
-    if (!this.props.playback.pauseTrack || (
-      this.props.playback.uri !== uri
-    )){
-      // Dispatch playTrack action
-      this.props.playTrack({
-        albumArt,
-        uri,
-        name,
-        artist
-      })
-    }
-  }
-  
-  render() {
-    const { combined, playlist } = this.state;
-
-    return (
-      <div>
-        {playlist 
-          ? <PlaylistHeader 
-              name={playlist.name}
-              image={
-                playlist.images.length !== 0 
-                ? playlist.images[0].url 
-                : defaultPlaylistCover}
-              ownerUrl={playlist.owner.external_urls.spotify}
-              ownerName={playlist.owner.display_name}
-              spotifyUrl={playlist.external_urls.spotify}
-            />
-          : <Loader />}
-        {Object.keys(combined).length !== 0 
-          ? <div className="fadeinFast">
-              <PlaylistItems>
-                <thead>
-                  <tr>
-                    <th>{/*Play Btns.*/}</th>
-                    <th>NAME</th>
-                    <th>ARTIST</th>
-                    <th>LENGTH</th>
+  return(
+    <div>
+      {playlist 
+      ? <PlaylistHeader 
+          name={playlist.name}
+          image={
+            playlist.images.length !== 0 
+            ? playlist.images[0].url 
+            : defaultPlaylistCover}
+          ownerUrl={playlist.owner.external_urls.spotify}
+          ownerName={playlist.owner.display_name}
+          spotifyUrl={playlist.external_urls.spotify}
+        />
+      : <Loader />}
+      {playlistTracks
+        ? <div className="fadeinFast">
+            <PlaylistItems>
+              <thead>
+                <tr>
+                  <th>{/*Play Btns.*/}</th>
+                  <th>NAME</th>
+                  <th>ARTIST</th>
+                  <th>LENGTH</th>
+                </tr>
+              </thead>
+              <tbody>
+              {Object.keys(playlistTracks).map((key)=> {
+                const track = playlistTracks[key]
+                return (
+                  <tr key={key}>
+                    <td>
+                      {playback.playerReady 
+                        ? <PlayButton
+                            nowPlaying={playback.uri === key} 
+                            albumArt={track.albumArt}
+                            uri={key}
+                            trackName={track.trackName}
+                            artist={track.trackArtist}
+                            playOnKeyDown={() => 
+                              handlePlay(
+                              playback, // redux store state
+                              dispatch, // dispatch function
+                              track.albumArt, // albumArt
+                              key, // uri
+                              track.trackName, // track
+                              track.trackArtist // artist
+                              )
+                            }
+                            playOnClick={() => 
+                              handlePlay(
+                                playback, // redux store state
+                                dispatch, // dispatch function
+                                track.albumArt, // albumArt
+                                key, // uri
+                                track.trackName, // track
+                                track.trackArtist // artist
+                              )
+                            }
+                          />
+                        : <img alt="play-icon-loading" src={playIcon} />}
+                    </td>
+                    <td><TableText>{track.trackName}</TableText></td>
+                    <td><TableText>{track.trackArtist}</TableText></td>
+                    <td>{formatTime(track.trackLength)}</td>
                   </tr>
-                </thead>
-                <tbody>
-                  {Object.keys(combined).map((key, idx) => (
-                      <tr key={key}>
-                        <td>
-                          {this.props.playback.playerReady 
-                            ? <PlayButton
-                                nowPlaying={this.props.playback.uri === key} 
-                                albumArt={combined[key].albumArt}
-                                uri={key}
-                                trackName={combined[key].trackName}
-                                artist={combined[key].trackArtist}
-                                playOnKeyDown={this.handlePlay.bind(this)}
-                                playOnClick={this.handlePlay.bind(this)}
-                              />
-                            : <img alt="play-icon-loading" src={playIcon} />}
-                        </td>
-                        <td><TableText>{combined[key].trackName}</TableText></td>
-                        <td><TableText>{combined[key].trackArtist}</TableText></td>
-                        <td>{this.formatTime(combined[key].trackLength)}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </PlaylistItems>
-              </div>
-            : <Loader />}
-      </div>
-    )
-  }
+              )})}
+              </tbody>
+            </PlaylistItems>
+          </div>
+        : <Loader />}
+    </div>
+  )
 }
-
-const mapStateToProps = (state) => {
-  const { playback, cache } = state
-  return { playback, cache }
-}
-
-const mapDispatchToProps = (dispatch) => ({
-  playTrack: (trackObject) => dispatch(playTrack(trackObject))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Playlist)
