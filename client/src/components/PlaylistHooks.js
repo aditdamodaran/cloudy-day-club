@@ -176,6 +176,16 @@ export default ({ playlistId }) => {
                             uri={key}
                             trackName={track.trackName}
                             artist={track.trackArtist}
+                            playOnKeyDown={() => 
+                              handlePlay(
+                              playback, // redux store state
+                              dispatch, // dispatch function
+                              track.albumArt, // albumArt
+                              key, // uri
+                              track.trackName, // track
+                              track.trackArtist // artist
+                              )
+                            }
                             playOnClick={() => 
                               handlePlay(
                                 playback, // redux store state
