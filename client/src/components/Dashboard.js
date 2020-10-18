@@ -1,6 +1,6 @@
 import React from 'react';
 import Playlists from './Playlists'
-import Playlist from './Playlist'
+import Playlist from './PlaylistHooks'
 import PlayerContainer from './PlayerContainer'
 import Navbar from './Navbar'
 import { Router } from '@reach/router';

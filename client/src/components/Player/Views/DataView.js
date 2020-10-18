@@ -10,26 +10,33 @@ import Controls from '../Controls';
 const keys = ['C','C# / D♭', 'D', 'D# / E♭', 'E', 'F', 'F# / G♭', 'G', 'G# / A♭', 'A', 'A# / B♭', 'B']
 
 const DataViewTopSection = styled.div`
-  display: flex;
+  display: inline-flex;
   height: 100%;
   width: 100%;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
+  /* border: 1px solid green; */
 `
 
 const AlbumArt = styled.img`
-  width: 12.5vw;
-  height: 12.5vw;
-  display: flex;
+  /* width: 12.5vw;
+  height: 12.5vw; */
+  /* flex-grow: 1; */
+  /* width: 10%; */
+  /* display: flex; */
+  min-width: 20%;
+  max-width: 30%;
+  /* border: 1px solid red; */
 `
 
 const SongInfo = styled.div`
   display: flex;
   justify-self: flex-start;
   align-content: center;
-  margin-left: 2rem;
+  margin-left: 5%;
   flex-wrap: wrap;
-  height: 12.5vw;
+  /* height: 12.5vw; */
+  /* border: 1px solid blue; */
 `
 
 const DataNowPlayingText = styled(NowPlayingText)`
@@ -73,6 +80,10 @@ const SubHeaderContainer = styled.div`
     align-items: center;
     b {
       font-weight: bold; 
+      white-space: nowrap;
+    }
+    p {
+      white-space: nowrap;
     }
     .feature {
       margin: 0 0;

@@ -32,3 +32,13 @@ export const catchErrors = fn => {
     });
   };
 };
+
+// format ms to MM:SS
+export const formatTime = (ms) => {
+  const secs = (ms / 1000) // to seconds
+  const minutes = parseInt(secs / 60) // to minutes
+  let secsLeft = parseInt(secs - (minutes*60))
+  secsLeft = ('0' + secsLeft).slice(-2)
+  const result = `${minutes}:${secsLeft}`
+  return result
+}
