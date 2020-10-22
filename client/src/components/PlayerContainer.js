@@ -66,9 +66,15 @@ export default () => {
   }, [albumArtUrl])
 
   return (
-    <PlayerPageContainer style={{ backgroundColor: `${color}` }}>
+    <PlayerPageContainer 
+      style={{ backgroundColor: `${color}` }}
+      className="fadeIn2sAfter1s"
+    >
       <PlayerPageInnerContainer>
-        <Player lightText={lightText} standardView={standardView}/> 
+        <Player 
+          lightText={lightText} 
+          standardView={standardView}
+        /> 
         <ToggleDataViewButton
           userCanClick={userCanClick}
           style={{
@@ -85,7 +91,7 @@ export default () => {
             }
           }}
           >
-          <img src={statsIcon} alt="view-songs-statistics"></img>
+          <img src={statsIcon} alt="view-songs-statistics" />
         </ToggleDataViewButton>
       </PlayerPageInnerContainer>
     </PlayerPageContainer>

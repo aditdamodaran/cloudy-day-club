@@ -6,6 +6,10 @@ html, body {
   overflow:hidden; 
 }
 
+body {
+  background: #1B1B1B;
+}
+
 // MIXINS
 @function calculateRem($size) {
   $remSize: $size / 16px;
@@ -43,7 +47,8 @@ $desktop: 1280;
 }
 
 @include mobile {
-  body {
-    position: fixed;
-  }
+  // Commenting out for now to check something
+  // body {
+    // position: fixed;
+  // }
 }

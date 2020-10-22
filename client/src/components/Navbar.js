@@ -34,7 +34,7 @@ const NavLinkContainer2 = styled(NavLinkContainer1)`
 
 const Navbar = () => (
   <NavigationContainer>
-    <Navigation className="fadeInFast">
+    <Navigation className="fadeIn1s">
       <NavLinkContainer1>
         <NavLink 
           to='/' 

@@ -114,7 +114,7 @@ export default ({albumArt, lightText, uri, trackName, artist, playerReady, toggl
   }, [trackURI])
 
   return (
-    <DataViewTopSection>
+    <DataViewTopSection className="fadeIn1sAfterHalf1s">
       <AlbumArt src={albumArt !== '' ? albumArt : defaultPlaylistCover} />
       <SongInfo>
         <div 

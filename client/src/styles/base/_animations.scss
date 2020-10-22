@@ -1,3 +1,65 @@
+@keyframes fadeInLinear {
+  0% { opacity:0; }
+  100% { opacity:1; }
+}
+
+@keyframes fadeIn25Delay {
+  0% { opacity:0; }
+  25% { opacity:0; }
+  100% { opacity:1; }
+}
+
+@keyframes fadeIn50Delay {
+  0% { opacity:0; }
+  50% { opacity:0; }
+  100% { opacity:1; }
+}
+
+.fadeIn1s {
+  animation-name: fadeInLinear;
+  animation-duration: 1s;
+}
+
+.fadeIn2s {
+  animation-name: fadeInLinear;
+  animation-duration: 2s;
+}
+
+.fadeIn4s {
+  animation-name: fadeInLinear;
+  animation-duration: 4s;
+}
+
+.fadeIn4sAfter1s {
+  animation-name: fadeIn25Delay;
+  animation-duration: 4s;
+}
+
+.fadeIn1sAfterHalf1s {
+  animation-name: fadeIn50Delay;
+  animation-duration: 1s;
+}
+
+.fadeIn2sAfter1s {
+  animation-name: fadeIn50Delay;
+  animation-duration: 2s;
+}
+
+.fadeIn4sAfter2s {
+  animation-name: fadeIn50Delay;
+  animation-duration: 4s;
+}
+
+.fadeIn6sAfter3s {
+  animation-name: fadeIn50Delay;
+  animation-duration: 6s;
+}
+
+.fadeIn8sAfter4s {
+  animation-name: fadeIn50Delay;
+  animation-duration: 8s;
+}
+
 .fadeInFast {
   animation-name: fadeInFast;
   animation-duration: 1.5s;
@@ -35,90 +97,98 @@
   100% { opacity:1; }
 }
 
-.slideUp {
-  animation-name: slideUp;
-  animation-duration: 4s;
-}
+// .slideUp {
+//   animation-name: slideUp;
+//   animation-duration: 8s;
+// }
 
-@keyframes slideUp {
-  0% { transform: translate(0px, 1000px); }
-  75% { transform: translate(0px, 1000px); }
-  100% { transform:  translate(0px,0px) ; }
-}
+// @keyframes slideUp {
+//   0% { transform: translate(0px, 100%); }
+//   25% { transform: translate(0px, 100%); }
+//   100% { transform:  translate(0px,0px) ; }
+// }
+
+$color-text-transition-duration: 8s;
 
 .becomeTransparent {
   animation-name: becomeTransparent;
-  animation-duration: 3s;
+  animation-duration: $color-text-transition-duration;
 }
 
 @keyframes becomeTransparent {
   0% {background-color:rgba(27,27,27, 1);}
-  99% {background-color:rgba(27,27,27, 1);}
+  80% {background-color:rgba(27,27,27, 1);}
   100% {background-color:rgba(0,0,0, 0);}
 }
 
-.purpleToWhite {
-  animation-name: purpletoWhite;
-  animation-duration: 4s;
+.whiteToPurple {
+  color: #bd86f4;
+  animation-name: whiteToPurple;
+  animation-duration: $color-text-transition-duration;
 }
 
-@keyframes purpletoWhite {
+@keyframes whiteToPurple {
   0% {color: white; }
   75% {color: white; }
   100% {color: #bd86f4; }
 }
 
-.blueToWhite {
-  animation-name: bluetoWhite;
-  animation-duration: 4s;
+.whiteToBlue {
+  color: #55abfc;
+  animation-name: whiteToBlue;;
+  animation-duration: $color-text-transition-duration;
 }
 
-@keyframes bluetoWhite {
+@keyframes whiteToBlue {
   0% {color:white; }
   75% {color: white; }
   100% {color: #55abfc; }
 }
 
 
-.greenToWhite {
-  animation-name: greenToWhite;
-  animation-duration: 4s;
+.whiteToGreen {
+  color: #1BB954;
+  animation-name: whiteToGreen;
+  animation-duration: $color-text-transition-duration;
 }
 
-@keyframes greenToWhite {
+@keyframes whiteToGreen {
   0% {color: white; }
   75% {color: white; }
   100% {color: #1BB954; }
 }
 
-.yellowToWhite {
-  animation-name: yellowToWhite;
-  animation-duration: 4s;
+.whiteToYellow {
+  color: #fff568;
+  animation-name: whiteToYellow;
+  animation-duration: $color-text-transition-duration;
 }
 
-@keyframes yellowToWhite {
+@keyframes whiteToYellow {
   0% {color: white; }
   75% {color: white; }
   100% {color: #fff568; }
 }
 
-.orangeToWhite {
-  animation-name: orangeToWhite;
-  animation-duration: 4s;
+.whiteToOrange {
+  color: #fbaf5d;
+  animation-name: whiteToOrange;
+  animation-duration: $color-text-transition-duration;
 }
 
-@keyframes orangeToWhite {
+@keyframes whiteToOrange {
   0% {color: white; }
   75% {color: white; }
   100% {color: #fbaf5d; }
 }
 
-.redToWhite {
-  animation-name: redToWhite;
-  animation-duration: 4s;
+.whiteToRed {
+  color: #f9471b;
+  animation-name: whiteToRed;
+  animation-duration: $color-text-transition-duration;
 }
 
-@keyframes redToWhite {
+@keyframes whiteToRed {
   0% {color: white; }
   75% {color: white; }
   100% {color: #f9471b; }

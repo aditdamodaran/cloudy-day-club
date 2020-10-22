@@ -14,7 +14,7 @@ const Spinner = styled.div`
 
 export default () => (
  <Loader>
-  <Spinner className="loader loader-1">
+  <Spinner className="loader loader-1 fadeIn2sAfter1s">
     <div className="loader-outer" />
     <div className="loader-inner" />
   </Spinner>

@@ -37,6 +37,9 @@ const LoginContainer = styled.div`
   display: flex;
   align-items: center;
   z-index: 3;
+  @media (max-width: ${'768px'}) {
+    width: 100%;
+  }
 `
 
 const ColorContainer = styled.div`
@@ -116,32 +119,32 @@ const Notices = styled.p`
 
 export default () => (
   <ThemeProvider theme={primaryTheme}>
-    <PageContainer>
+    <PageContainer className="fadeIn2sAfter1s">
         <ColorContainer className="slideUp" />
         <LoginContainer className="becomeTransparent">
           <Login>
-            <h1 id="login-page-header" className="fadeInFast">
+            <h1 id="login-page-header" className="fadeIn4sAfter2s">
               <span role="img" aria-label="cloud">☁️</span> Day Club
             </h1>
-            <LoginPageText className="fadeInSlow">
-              Your <span className="greenToWhite">Spotify Playlists</span>, with a splash of
+            <LoginPageText className="fadeIn6sAfter3s">
+              Your <span className="whiteToGreen">Spotify Playlists</span>, with a splash of
               <br/> 
                 <span className="colourSpan">
-                  <span className="purpleToWhite"> c</span>
-                  <span className="blueToWhite"  >o</span> 
-                  <span className="greenToWhite" >l</span> 
-                  <span className="yellowToWhite">o</span> 
-                  <span className="orangeToWhite">u</span> 
-                  <span className="redToWhite"   >r </span>  
+                  <span className="whiteToPurple"> c</span>
+                  <span className="whiteToBlue"  >o</span> 
+                  <span className="whiteToGreen" >l</span> 
+                  <span className="whiteToYellow">o</span> 
+                  <span className="whiteToOrange">u</span> 
+                  <span className="whiteToRed"   >r </span>  
                 </span>
               for those cloudy days.
             </LoginPageText>
-            <a href={LOGIN_URI} className="fadeInSlower"> 
+            <a href={LOGIN_URI} className="fadeIn6sAfter3s"> 
               <LoginButton>
                 Login with Spotify Premium
               </LoginButton>
             </a>
-            <Notices className="fadeInSlower">
+            <Notices className="fadeIn8sAfter4s">
             Dear music loving friend:
             <br/>
               <a href="https://developer.spotify.com/documentation/web-playback-sdk/#supported-browsers">
@@ -150,7 +153,7 @@ export default () => (
             <br />Cloudy Day Club works on Chrome, Brave, Firefox, and Edge.</Notices>
           </Login>
           </LoginContainer>
-      <LoginImage id="login-image"/>
+      <LoginImage id="login-image" className="fadeIn2sAfter1s"/>
 
     </PageContainer>
   </ThemeProvider>

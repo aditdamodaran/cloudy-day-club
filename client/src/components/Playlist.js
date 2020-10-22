@@ -139,7 +139,7 @@ export default ({ playlistId }) => {
   }, [playlistId])
 
   return(
-    <div>
+    <div className="fadeIn1sAfterHalf1s">
       {playlist 
       ? <PlaylistHeader 
           name={playlist.name}
@@ -153,7 +153,7 @@ export default ({ playlistId }) => {
         />
       : <Loader />}
       {playlistTracks
-        ? <div className="fadeinFast">
+        ? <div>
             <PlaylistItems>
               <thead>
                 <tr>
@@ -184,7 +184,7 @@ export default ({ playlistId }) => {
                               key, // uri
                               track.trackName, // track
                               track.trackArtist // artist
-                              )
+                              )                 
                             }
                             playOnClick={() => 
                               handlePlay(

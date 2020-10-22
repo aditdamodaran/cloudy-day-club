@@ -57,7 +57,10 @@ export default () => {
     <PlaylistsGridContainer>
       <PlaylistsHeader>Playlists</PlaylistsHeader>
         {playlists ?
-          <PlaylistsGrid id="playlist-grid">
+          <PlaylistsGrid 
+            id="playlist-grid" 
+            className="fadeIn1sAfterHalf1s"
+          >
             {playlists.items.map((playlist) => (
               <PlaylistContainer
                 key={playlist.id}
