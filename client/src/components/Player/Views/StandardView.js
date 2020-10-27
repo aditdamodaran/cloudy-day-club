@@ -27,7 +27,7 @@ const StandardNowPlayingText = styled(NowPlayingText)`
 `;
 
 export default ({uri, albumArt, lightText, trackName, playerReady, togglePlayback, paused}) => (
-  <StandardViewSection className="fadeIn1sAfterHalf1s">
+  <StandardViewSection>
     <AlbumArt id="album-art" 
       src={
         albumArt 

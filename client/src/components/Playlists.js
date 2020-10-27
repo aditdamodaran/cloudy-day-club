@@ -14,7 +14,6 @@ const PlaylistsGridContainer = styled.div`
   width: 90%;
   min-height: 75vh;
   margin: 2rem auto;
-  margin-bottom: 5rem;
   flex-wrap: wrap;
 `
 
@@ -30,6 +29,7 @@ const PlaylistsGrid= styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap: 1.2rem;
   grid-row-gap: 1.2rem;
+  margin-bottom: 15rem;
 `
 
 export default () => {
@@ -58,8 +58,7 @@ export default () => {
       <PlaylistsHeader>Playlists</PlaylistsHeader>
         {playlists ?
           <PlaylistsGrid 
-            id="playlist-grid" 
-            className="fadeIn1sAfterHalf1s"
+            id="playlist-grid"
           >
             {playlists.items.map((playlist) => (
               <PlaylistContainer

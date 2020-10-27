@@ -139,7 +139,7 @@ export default ({ playlistId }) => {
   }, [playlistId])
 
   return(
-    <div className="fadeIn1sAfterHalf1s">
+    <div>
       {playlist 
       ? <PlaylistHeader 
           name={playlist.name}
@@ -151,7 +151,7 @@ export default ({ playlistId }) => {
           ownerName={playlist.owner.display_name}
           spotifyUrl={playlist.external_urls.spotify}
         />
-      : <Loader />}
+      : <div />}
       {playlistTracks
         ? <div>
             <PlaylistItems>
