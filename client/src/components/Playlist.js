@@ -104,20 +104,20 @@ export default ({ playlistId }) => {
   useEffect(() => {
     async function getData() {
       const playlistData = await getPlaylist(playlistId);
-      const audioFeaturesData = await getAudioFeaturesForTracks(playlistData.data.tracks.items);
+      // const audioFeaturesData = await getAudioFeaturesForTracks(playlistData.data.tracks.items);
       
-      const audioFeatures = audioFeaturesData.data.audio_features.reduce((obj, item) => (
-        obj[item.id] = {
-          acousticness: item.acousticness,
-          danceability: item.danceability,
-          energy: item.energy,
-          instrumentalness: item.instrumentalness,
-          speechiness: item.speechiness,
-          temp: item.tempo,
-          valence: item.valence
-          // eslint-disable-next-line 
-        }, obj) ,{}
-      );
+      // const audioFeatures = audioFeaturesData.data.audio_features.reduce((obj, item) => (
+      //   obj[item.id] = {
+      //     acousticness: item.acousticness,
+      //     danceability: item.danceability,
+      //     energy: item.energy,
+      //     instrumentalness: item.instrumentalness,
+      //     speechiness: item.speechiness,
+      //     temp: item.tempo,
+      //     valence: item.valence
+      //     // eslint-disable-next-line 
+      //   }, obj) ,{}
+      // );
 
       const tracks = playlistData.data.tracks.items.map(({track})=>track).reduce((obj, item) => (
         obj[item.id] = {
@@ -130,7 +130,7 @@ export default ({ playlistId }) => {
         }, obj) ,{}
       );
 
-      const combined = merge(tracks, audioFeatures)
+      const combined = merge(tracks) // , audioFeatures)
       setPlaylist(playlistData.data)
       setPlaylistTracks(combined)
     }
