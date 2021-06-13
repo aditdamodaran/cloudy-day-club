@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { PlaylistHeader } from './Playlist/PlaylistHeader'
 import { getPlaylist, getAudioFeaturesForTracks } from '../spotify';
-import { playTrack } from '../actions/playerControls'
+import { playTrack, setUpcomingQueue } from '../actions/playerControls'
 import { PlayButton } from './Playlist/PlayButton'
 import playIcon from '../icons/play-icon-circular.svg'
 import defaultPlaylistCover from '../icons/default-playlist-cover.svg'
@@ -82,7 +82,7 @@ const TableText = styled.div`
   width: 90%;
 `
 
-const handlePlay = (playback, dispatch, albumArt, uri, name, artist) => {
+const handlePlay = (playback, dispatch, albumArt, uri, name, artist, idx) => {
   // first check that we are in fact playing a different track
   if (!playback.pauseTrack || playback.uri !== uri) { 
     dispatch(
@@ -90,9 +90,14 @@ const handlePlay = (playback, dispatch, albumArt, uri, name, artist) => {
       albumArt,
       uri,
       name,
-      artist
+      artist,
+      idx
     }))
   }
+}
+
+const handleSetUpcomingQueue = (tracks, dispatch) => {
+  dispatch(setUpcomingQueue({tracks}))
 }
 
 export default ({ playlistId }) => {
@@ -118,17 +123,22 @@ export default ({ playlistId }) => {
       //     // eslint-disable-next-line 
       //   }, obj) ,{}
       // );
+      
+      const tracks = playlistData.data.tracks.items.map(({track}, idx)=>({[idx] : track})).reduce((obj, item) => {
+        const index = Object.keys(item)[0]
+        const track = item[index]
+        return (obj[track.id] = {
+            idx : parseInt(index),
+            trackArtist: track.artists[0].name,
+            trackLength: track.duration_ms,
+            trackName: track.name,
+            albumArt: track.album.images[0].url,
+            albumName: track.album.name
+            // eslint-disable-next-line 
+          }, obj)
+      }, {})
 
-      const tracks = playlistData.data.tracks.items.map(({track})=>track).reduce((obj, item) => (
-        obj[item.id] = {
-          trackArtist: item.artists[0].name,
-          trackLength: item.duration_ms,
-          trackName: item.name,
-          albumArt: item.album.images[0].url,
-          albumName: item.album.name
-          // eslint-disable-next-line 
-        }, obj) ,{}
-      );
+      catchErrors(dispatch(setUpcomingQueue({tracks})))
 
       const combined = merge(tracks) // , audioFeatures)
       setPlaylist(playlistData.data)
@@ -183,7 +193,8 @@ export default ({ playlistId }) => {
                               track.albumArt, // albumArt
                               key, // uri
                               track.trackName, // track
-                              track.trackArtist // artist
+                              track.trackArtist, // artist,
+                              track.idx // idx
                               )                 
                             }
                             playOnClick={() => 
@@ -193,7 +204,8 @@ export default ({ playlistId }) => {
                                 track.albumArt, // albumArt
                                 key, // uri
                                 track.trackName, // track
-                                track.trackArtist // artist
+                                track.trackArtist, // artist,
+                                track.idx // idx
                               )
                             }
                           />
