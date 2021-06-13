@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Script from 'react-load-script';
 import { connect } from 'react-redux'
 import styled from 'styled-components'
-import { setPlayerReady, togglePlay } from '../../actions/playerControls'
+import { setPlayerReady, togglePlay, playingSong, autoPlayNextSong } from '../../actions/playerControls'
 import { getAccessToken, playTrack, resumeTrack } from '../../spotify'
 import { StandardPlayer } from './StandardPlayer'
 
@@ -54,9 +54,33 @@ class Player extends Component {
     this.player.addListener('account_error', ({ message }) => { console.error(message); });
     this.player.addListener('playback_error', ({ message }) => { console.error(message); });
 
-    // Playback status updates
+    // Playback status updates with autoplaye functionality
     this.player.addListener('player_state_changed', state => {
       if (state){
+        if (state.position > 0){
+          this.props.setPlayingSong()
+        }
+        if (
+            state.position == 0 && this.props.playback.playingSong 
+            && (this.props.playback.uri == this.props.playback.queue[this.props.playback.queue.length - 1])
+            ){
+              const playlistLength = Object.keys(this.props.playback.upcomingQueue).length  - 1
+              if ((this.props.playback.idx < playlistLength) && !this.props.playback.autoplayed){
+                // autoplay next song, should only fire once
+                const key = Object.keys(this.props.playback.upcomingQueue)[this.props.playback.idx + 1]
+                const nextSong = this.props.playback.upcomingQueue[key]
+                this.props.autoPlayNextSong(
+                  nextSong.albumArt,
+                  key,
+                  nextSong.trackName,
+                  nextSong.trackArtist,
+                  nextSong.idx
+                )
+              } else {
+                console.log("You've reached the end of the playlist! Nice :)")
+              }
+          // Song Ended
+        }
         this.setState({ paused: state.paused })
       } 
     });
@@ -64,8 +88,7 @@ class Player extends Component {
     // Ready
     this.player.addListener('ready', ({ device_id }) => {
       this.setState({ playerReady: true });
-      this.deviceId = device_id
-      console.log('Ready with Device ID', device_id);
+      this.deviceId = device_id;
       this.props.setPlayerReady()
     });
 
@@ -98,6 +121,7 @@ class Player extends Component {
   }
 
   executePlaySong(uri){
+    console.log(this.deviceId)
     if (this.deviceId){
       playTrack(uri, this.deviceId)
     }
@@ -141,7 +165,9 @@ class Player extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   setPlayerReady: () => dispatch(setPlayerReady()),
-  togglePlay: () => dispatch(togglePlay())
+  togglePlay: () => dispatch(togglePlay()),
+  setPlayingSong: () => dispatch(playingSong()),
+  autoPlayNextSong: (albumArt, uri, name, artist, idx) => dispatch(autoPlayNextSong(albumArt, uri, name, artist, idx))
 })
 
 const mapStateToProps = (state) => {
