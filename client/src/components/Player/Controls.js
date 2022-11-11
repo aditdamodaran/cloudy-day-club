@@ -33,7 +33,7 @@ const TogglePlay = styled.img`
 
 export default ({ className, lightText, togglePlayback, paused }) => {
   // Accessibility Minded Toggle Focus -- Assumes User is On Keyboard by Default
-  const [userCanClick, setUserCanClick] = useState(false)     
+  const [userCanClick, setUserCanClick] = useState(false)  
   
   return (
     <ControlsContainer className={className}>
