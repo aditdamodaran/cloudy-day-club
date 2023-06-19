@@ -30,7 +30,7 @@ const cookieParser = require('cookie-parser');
 const path = require('path');
 const bodyParser = require('body-parser');
 const history = require('connect-history-api-fallback');
-const { getColorFromURL } = require('color-thief-node');
+const { getColor } = require('colorthief');
 const compression = require('compression')
 
 /**
@@ -197,7 +197,7 @@ app.get('/refresh_token', function (req, res) {
  */
 app.post('/colors', function(req, res) {
   (async () => {
-    const dominantColor = await getColorFromURL(req.body.url);
+    const dominantColor = await getColor(req.body.url);
     res.send(dominantColor)
   })();
 })
