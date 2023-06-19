@@ -13,7 +13,7 @@
     "start": "node server"
   },
   "engines": {
-    "node": "18.0.0"
+    "node": "18.15.0"
   },
   "dependencies": {
     "@reach/router": "^1.3.4",
