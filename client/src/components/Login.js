@@ -167,6 +167,7 @@ const LoginButton = styled.button`
   @media (max-width: ${'768px'}) {
     font-size: 0.8rem;
     margin: 0.5rem 0rem;
+    color: #141414;
   }
 `
 
