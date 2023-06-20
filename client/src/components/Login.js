@@ -48,6 +48,8 @@ const LoginContainer = styled.div`
   z-index: 3; 
   @media (max-width: ${'768px'}) {
     width: 100%;
+    height: 80%;
+    margin: 10% auto;
   }
 `
 
@@ -65,6 +67,9 @@ const LogoContainer = styled.div`
   /* display: block; */
   width: 35%;
   /* margin: 0 auto; */
+  @media (max-width: ${'768px'}) {
+    width: 50%;
+  }
 `
 
 const TitleContainer = styled.div`
@@ -74,6 +79,11 @@ const TitleContainer = styled.div`
   width: 70%;
   margin-top: 2.5rem;
   margin-bottom: 0.5rem;
+  @media (max-width: ${'768px'}) {
+    width: 70%;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
 `
 
 const SubtitleContainer = styled.div`
@@ -88,6 +98,10 @@ const SubtitleContainer = styled.div`
   /* width: 30%; */
   /* margin: 1.5rem auto; */
   line-height: 1.75;
+  @media (max-width: ${'768px'}) {
+    width: 80%;
+    font-size: 1rem;
+  }
 `
 
 const ColorContainer = styled.div`
@@ -149,6 +163,10 @@ const LoginButton = styled.button`
   cursor: pointer;
   &:hover {
     background: #bcbcbc;
+  }
+  @media (max-width: ${'768px'}) {
+    font-size: 0.8rem;
+    margin: 0.5rem 0rem;
   }
 `
 
