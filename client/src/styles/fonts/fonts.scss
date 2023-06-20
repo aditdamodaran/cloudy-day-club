@@ -1,0 +1,8 @@
+@mixin font-face($family, $filename, $folder, $style, $weight) {
+    $font-family: $family;
+    $src: url('#{$folder}/#{$filename}.ttf') format("truetype");
+  }
+  
+  // AVENIR
+  $folderAvenir: './Jost';
+  @include font-face('Jost-Bold', 'Jost-Bold', $folderJost, normal, 500);

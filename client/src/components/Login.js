@@ -1,7 +1,9 @@
 import React  from 'react';
 import styled, {ThemeProvider} from 'styled-components/macro';
 import { primaryTheme } from '../styles/themes';
-import splashscreen from '../static/splashscreen.jpg'
+// import splashscreen from '../static/splashscreen.jpg'
+import LogoDarkBg from '../static/LogoDarkBg.svg'
+import CloudyDayClubTextWhite from '../static/CloudyDayClubTextWhite.svg'
 
 // 7 colors that can be randomly applied
 const colorsMap = [
@@ -28,18 +30,64 @@ const PageContainer = styled.div`
   overflow-y: hidden;
   display: flex;
   flex-wrap: nowrap;
-  background: ${props => props.theme.login.background};
+  background-color: #141414;
+  justify-content: center;
+  align-items: center;
+  /* background: ${props => props.theme.login.background}; */
 `
 
 const LoginContainer = styled.div`
-  height: 100%;
-  padding: 0rem 0rem;
-  display: flex;
-  align-items: center;
-  z-index: 3;
+  /* border: 1px solid red; */
+  height: 70%;
+  width: 50%;
+  margin: 15% auto;
+  /* display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center; */
+  z-index: 3; 
   @media (max-width: ${'768px'}) {
     width: 100%;
   }
+`
+
+const LoginRow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-basis: 100%;
+  /* border: 1px solid green; */
+`
+
+const LogoContainer = styled.div`
+  /* border: 1px solid white; */
+  /* padding: 40%; */
+  /* display: block; */
+  width: 35%;
+  /* margin: 0 auto; */
+`
+
+const TitleContainer = styled.div`
+  /* border: 1px solid blue; */
+  /* border: 1px solid white; */
+  /* display: flex; */
+  width: 70%;
+  margin-top: 2.5rem;
+  margin-bottom: 0.5rem;
+`
+
+const SubtitleContainer = styled.div`
+  color: white;
+  text-align: center;
+  font-family: "Jost";
+  font-size: 1.75rem;
+  /* align-items: center; */
+/* border: 1px solid blue; */
+/* border: 1px solid white; */
+/* display: flex; */
+  /* width: 30%; */
+  /* margin: 1.5rem auto; */
+  line-height: 1.75;
 `
 
 const ColorContainer = styled.div`
@@ -52,16 +100,16 @@ const ColorContainer = styled.div`
   filter: brightness(.8) saturate(0.5);
 `
 
-const LoginImage = styled.div`
-  background: url(${splashscreen});
-  background-size: cover !important;                 
-  background-repeat: no-repeat !important;
-  background-position: center center !important;   
-  width: 50%;
-  height: 100%;
-  flex-grow: 1;
-  z-index: 3;
-`
+// const LoginImage = styled.div`
+//   background: url(${splashscreen});
+//   background-size: cover !important;                 
+//   background-repeat: no-repeat !important;
+//   background-position: center center !important;   
+//   width: 50%;
+//   height: 100%;
+//   flex-grow: 1;
+//   z-index: 3;
+// `
 
 const Login = styled.div`
   width: 100%;
@@ -85,18 +133,22 @@ const Login = styled.div`
 `
 
 const LoginButton = styled.button`
-  background: ${props => props.theme.spotifygreen};
+  cursor: pointer;
+  /* background: ${props => props.theme.spotifygreen};
   color: white;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif; 
-  font-weight: bold;
+  font-weight: bold; */
+  background-color: #fefefe;
+  text-transform: uppercase;
+  font-family: "Jost-Bold";
   font-size: 1rem;
-  padding: 1rem 2rem;
-  margin: 1rem 0rem;
+  padding: 2rem 3rem;
+  margin: 1.5rem 0rem;
   border: none;
-  border-radius: 2rem;
+  border-radius: 1rem;
   cursor: pointer;
   &:hover {
-    background: #02A03B;
+    background: #bcbcbc;
   }
 `
 
@@ -119,8 +171,29 @@ const Notices = styled.p`
 
 export default () => (
   <ThemeProvider theme={primaryTheme}>
-    <PageContainer className="fadeIn2sAfter1s">
-        <ColorContainer className="slideUp" />
+    <PageContainer>
+      <LoginContainer>
+        <LoginRow>
+          <LogoContainer><img src={LogoDarkBg} /></LogoContainer>
+        </LoginRow>
+        <LoginRow>
+          <TitleContainer><img src={CloudyDayClubTextWhite} /></TitleContainer>
+        </LoginRow>
+        <LoginRow>
+          <SubtitleContainer>
+            <p>Your Spotify playlists, with a sprinkle of color<br></br> for those drab cloudy days.</p>
+          </SubtitleContainer>
+        </LoginRow>
+        <LoginRow>
+          <a href={LOGIN_URI} className='button'> 
+            <LoginButton>
+              Login with Spotify Premium
+            </LoginButton>
+          </a>
+        </LoginRow>
+      </LoginContainer>
+      {/* <img src={LogoDarkBg} /> */}
+        {/* <ColorContainer className="slideUp" />
         <LoginContainer className="becomeTransparent">
           <Login>
             <h1 id="login-page-header" className="fadeIn4sAfter2s">
@@ -152,8 +225,8 @@ export default () => (
               </a>
             <br />Cloudy Day Club works on Chrome, Brave, Firefox, and Edge.</Notices>
           </Login>
-          </LoginContainer>
-      <LoginImage id="login-image" className="fadeIn2sAfter1s"/>
+          </LoginContainer> */}
+      {/* <LoginImage id="login-image" className="fadeIn2sAfter1s"/> */}
 
     </PageContainer>
   </ThemeProvider>
