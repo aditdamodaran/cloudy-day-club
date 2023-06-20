@@ -3,6 +3,7 @@
     $src: url('#{$folder}/#{$filename}.ttf') format("truetype");
   }
   
-  // AVENIR
-  $folderAvenir: './Jost';
-  @include font-face('Jost-Bold', 'Jost-Bold', $folderJost, normal, 500);
+// Jost
+$folderJost: './Jost';
+@include font-face('Jost-Regular', 'Jost-Regular', $folderJost, normal, 300);
+@include font-face('Jost-Bold', 'Jost-Bold', $folderJost, normal, 500);

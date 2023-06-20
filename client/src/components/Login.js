@@ -79,7 +79,7 @@ const TitleContainer = styled.div`
 const SubtitleContainer = styled.div`
   color: white;
   text-align: center;
-  font-family: "Jost";
+  font-family: "Jost-Regular";
   font-size: 1.75rem;
   /* align-items: center; */
 /* border: 1px solid blue; */
