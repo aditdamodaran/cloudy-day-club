@@ -1,0 +1,11 @@
+@mixin font-face($family, $filename, $folder){
+    @font-face {
+      font-family: $family;
+      src: url('#{$folder}/#{$filename}.ttf') format("truetype");
+    }
+  }
+  
+// Jost
+$folderJost: './Jost';
+@include font-face('Jost-Regular', 'Jost-Regular', $folderJost);
+@include font-face('Jost-Bold', 'Jost-Bold', $folderJost);
