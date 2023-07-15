@@ -5,7 +5,7 @@
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 <p align="center">
-  <img src="./client/src/static/LogoLightBg.svg" alt="Logo" width="80" height="80">
+  <img src="./client/src/static/LogoLightBg.svg" alt="Logo" height="80">
   <h3 align="center">Cloudy Day Club</h3>
 
 
