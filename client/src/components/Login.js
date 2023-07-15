@@ -1,5 +1,5 @@
-import React  from 'react';
-import styled, {ThemeProvider} from 'styled-components/macro';
+import React, { useState, useEffect }  from 'react';
+import styled, { ThemeProvider } from 'styled-components/macro';
 import { primaryTheme } from '../styles/themes';
 // import splashscreen from '../static/splashscreen.jpg'
 import LogoDarkBg from '../static/LogoDarkBg.svg'
@@ -66,6 +66,7 @@ const LogoContainer = styled.div`
   /* padding: 40%; */
   /* display: block; */
   width: 35%;
+  aspect-ratio: 580 / 320;
   /* margin: 0 auto; */
   @media (max-width: ${'768px'}) {
     width: 50%;
@@ -77,6 +78,7 @@ const TitleContainer = styled.div`
   /* border: 1px solid white; */
   /* display: flex; */
   width: 70%;
+  aspect-ratio: 590 / 220;
   margin-top: 2.5rem;
   margin-bottom: 0.5rem;
   @media (max-width: ${'768px'}) {
@@ -89,7 +91,7 @@ const TitleContainer = styled.div`
 const SubtitleContainer = styled.div`
   color: white;
   text-align: center;
-  font-family: "Jost-Regular";
+  font-family: "Jost-Regular", Verdana, sans-serif;
   font-size: 1.75rem;
   /* align-items: center; */
 /* border: 1px solid blue; */
@@ -131,7 +133,7 @@ const Login = styled.div`
   padding: 4rem;
   overflow: hidden;
   color: ${props => props.theme.login.white};
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif; 
+  font-family: Verdana, sans-serif;
   margin: 0;
   h1 { margin: 0; font-size: 4.5rem; }
   h2 { margin: 0; font-size: 1.75rem; }
@@ -154,7 +156,7 @@ const LoginButton = styled.button`
   font-weight: bold; */
   background-color: #fefefe;
   text-transform: uppercase;
-  font-family: "Jost-Bold";
+  font-family: "Jost-Bold", Verdana, sans-serif;
   font-size: 1rem;
   padding: 2rem 3rem;
   margin: 1.5rem 0rem;
@@ -187,68 +189,79 @@ const Notices = styled.p`
     font-size: 1rem;
   }
 `
+const defaultState = {
+  loading: true
+}
 
-export default () => (
-  <ThemeProvider theme={primaryTheme}>
-    <PageContainer>
-      <LoginContainer>
-        <LoginRow>
-          <LogoContainer><img src={LogoDarkBg} /></LogoContainer>
-        </LoginRow>
-        <LoginRow>
-          <TitleContainer><img src={CloudyDayClubTextWhite} /></TitleContainer>
-        </LoginRow>
-        <LoginRow>
-          <SubtitleContainer>
-            <p>Your Spotify playlists, with a sprinkle of color<br></br> for those drab cloudy days.</p>
-          </SubtitleContainer>
-        </LoginRow>
-        <LoginRow>
-          <a href={LOGIN_URI} className='button'> 
-            <LoginButton>
-              Login with Spotify Premium
-            </LoginButton>
-          </a>
-        </LoginRow>
-      </LoginContainer>
-      {/* <img src={LogoDarkBg} /> */}
-        {/* <ColorContainer className="slideUp" />
-        <LoginContainer className="becomeTransparent">
-          <Login>
-            <h1 id="login-page-header" className="fadeIn4sAfter2s">
-              <span role="img" aria-label="cloud">☁️</span> Day Club
-            </h1>
-            <LoginPageText className="fadeIn6sAfter3s">
-              Your <span className="whiteToGreen">Spotify Playlists</span>, with a splash of
-              <br/> 
-                <span className="colourSpan">
-                  <span className="whiteToPurple"> c</span>
-                  <span className="whiteToBlue"  >o</span> 
-                  <span className="whiteToGreen" >l</span> 
-                  <span className="whiteToYellow">o</span> 
-                  <span className="whiteToOrange">u</span> 
-                  <span className="whiteToRed"   >r </span>  
-                </span>
-              for those cloudy days.
-            </LoginPageText>
-            <a href={LOGIN_URI} className="fadeIn6sAfter3s"> 
+export default () => {
+  const [loading, setLoading] = useState(defaultState.loading);
+  useEffect(() => { setLoading(false) }, []);
+
+  return (
+    <ThemeProvider theme={primaryTheme}>
+      <PageContainer>
+        <LoginContainer>
+          <LoginRow>
+            <LogoContainer><img src={LogoDarkBg} /></LogoContainer>
+          </LoginRow>
+          <LoginRow>
+            <TitleContainer><img src={CloudyDayClubTextWhite} /></TitleContainer>
+          </LoginRow>
+          <LoginRow>
+            <SubtitleContainer>
+              {console.log(defaultState)}
+              <p style={{/* visibility: `${defaultState.loading? 'visible' : 'hidden'}` */}}>
+                Your Spotify playlists, with a sprinkle of color<br></br> for those drab cloudy days.
+              </p>
+            </SubtitleContainer>
+          </LoginRow>
+          <LoginRow>
+            <a href={LOGIN_URI} className='button'> 
               <LoginButton>
                 Login with Spotify Premium
               </LoginButton>
             </a>
-            <Notices className="fadeIn8sAfter4s">
-            Dear music loving friend:
-            <br/>
-              <a href="https://developer.spotify.com/documentation/web-playback-sdk/#supported-browsers">
-                Spotify's Web Player SDK does not support Safari or mobile devices yet. 
+          </LoginRow>
+        </LoginContainer>
+        {/* <img src={LogoDarkBg} /> */}
+          {/* <ColorContainer className="slideUp" />
+          <LoginContainer className="becomeTransparent">
+            <Login>
+              <h1 id="login-page-header" className="fadeIn4sAfter2s">
+                <span role="img" aria-label="cloud">☁️</span> Day Club
+              </h1>
+              <LoginPageText className="fadeIn6sAfter3s">
+                Your <span className="whiteToGreen">Spotify Playlists</span>, with a splash of
+                <br/> 
+                  <span className="colourSpan">
+                    <span className="whiteToPurple"> c</span>
+                    <span className="whiteToBlue"  >o</span> 
+                    <span className="whiteToGreen" >l</span> 
+                    <span className="whiteToYellow">o</span> 
+                    <span className="whiteToOrange">u</span> 
+                    <span className="whiteToRed"   >r </span>  
+                  </span>
+                for those cloudy days.
+              </LoginPageText>
+              <a href={LOGIN_URI} className="fadeIn6sAfter3s"> 
+                <LoginButton>
+                  Login with Spotify Premium
+                </LoginButton>
               </a>
-            <br />Cloudy Day Club works on Chrome, Brave, Firefox, and Edge.</Notices>
-          </Login>
-          </LoginContainer> */}
-      {/* <LoginImage id="login-image" className="fadeIn2sAfter1s"/> */}
+              <Notices className="fadeIn8sAfter4s">
+              Dear music loving friend:
+              <br/>
+                <a href="https://developer.spotify.com/documentation/web-playback-sdk/#supported-browsers">
+                  Spotify's Web Player SDK does not support Safari or mobile devices yet. 
+                </a>
+              <br />Cloudy Day Club works on Chrome, Brave, Firefox, and Edge.</Notices>
+            </Login>
+            </LoginContainer> */}
+        {/* <LoginImage id="login-image" className="fadeIn2sAfter1s"/> */}
 
-    </PageContainer>
-  </ThemeProvider>
-);
+      </PageContainer>
+    </ThemeProvider>
+  )
+};
 
 
