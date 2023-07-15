@@ -4,7 +4,7 @@ import styled from 'styled-components/macro';
 import { getTrackAudioFeatures } from '../../../spotify'
 import { catchErrors } from '../../../utils'
 import NowPlayingText from './../NowPlayingText';
-import defaultPlaylistCover from '../../../icons/default-playlist-cover.svg'
+import defaultPlaylistCover from './../../../static/LogoDarkBg.svg';
 import Controls from '../Controls';
 
 const keys = ['C','C# / D♭', 'D', 'D# / E♭', 'E', 'F', 'F# / G♭', 'G', 'G# / A♭', 'A', 'A# / B♭', 'B']

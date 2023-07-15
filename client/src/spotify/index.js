@@ -184,10 +184,11 @@ export const getTrackInfo = trackId => {
  * Play a Track (from the start)
  * https://developer.spotify.com/documentation/web-playback-sdk/reference/
  */
-export const playTrack = (trackUri, deviceId) => {
+export const playTrack = async(trackUri, deviceId) => {
   const url = `https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`;
   const body = { uris: [`spotify:track:${trackUri}`] };
-  return axios.put(url, body, {headers});
+  const track = await axios.put(url, body, {headers});
+  return track
 }
 
 /**

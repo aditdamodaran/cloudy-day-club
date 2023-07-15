@@ -9,11 +9,16 @@ import '../styles/styles.scss'
 const store = configureStore();
 
 const App = () => {
-  const [authToken, setToken] = useState('')
+  
 
-  useEffect(() => {
-    setToken(token)
-  }, [authToken])
+  const [authToken, setToken] = useState()
+
+  // IS THIS NEEDED?
+  // useEffect(() => {
+  //   setToken(token)
+  // }, [authToken]) 
+
+  // console.log(authToken)
 
   return (
     <div>

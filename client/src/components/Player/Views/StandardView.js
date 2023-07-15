@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import CloudyDayClubLogo from './../../../icons/logo.svg';
+import CloudyDayClubLogo from './../../../static/LogoDarkBg.svg';
 import NowPlayingText from './../NowPlayingText';
 import Controls from '../Controls';
 

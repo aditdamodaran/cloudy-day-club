@@ -43,7 +43,7 @@ const ToggleDataViewButton = styled.button`
 
 
 export default () => {
-  const [color, setColor] = useState('#5F2233')
+  const [color, setColor] = useState('#111111')
   const [lightText, setLightText] = useState(true)
   const [standardView, setStandardView] = useState(true)
   const albumArtUrl = useSelector(state => state.playback.albumArt)
