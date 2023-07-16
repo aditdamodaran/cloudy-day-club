@@ -6,6 +6,7 @@ import { catchErrors } from '../utils'
 import styled from 'styled-components/macro';
 import statsIcon from '../icons/stats-icon.svg'
 import fullScreenIcon from '../icons/full-screen.svg'
+import recordIcon from '../icons/album-cover-icon.svg'
 import minimizeFullScreenIcon from '../icons/minimize-full-screen.svg'
 import Player from './Player/Player'
 
@@ -126,7 +127,7 @@ export default () => {
             }
           }}
           >
-          <img src={statsIcon} alt="view-songs-statistics" />
+          <img src={standardView ? statsIcon : recordIcon} alt="view-songs-statistics" />
         </ToggleDataViewButton>
       </PlayerPageInnerContainer>
     </PlayerPageContainer>
