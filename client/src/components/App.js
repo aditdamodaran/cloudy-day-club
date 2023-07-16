@@ -10,15 +10,11 @@ const store = configureStore();
 
 const App = () => {
   
-
   const [authToken, setToken] = useState()
 
-  // IS THIS NEEDED?
-  // useEffect(() => {
-  //   setToken(token)
-  // }, [authToken]) 
-
-  // console.log(authToken)
+  useEffect(() => {
+    setToken(token)
+  }, [authToken]) 
 
   return (
     <div>

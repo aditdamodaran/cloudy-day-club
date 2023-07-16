@@ -5,6 +5,8 @@ import { rgbToHex, calcTextColor } from '../utils';
 import { catchErrors } from '../utils'
 import styled from 'styled-components/macro';
 import statsIcon from '../icons/stats-icon.svg'
+import fullScreenIcon from '../icons/full-screen.svg'
+import minimizeFullScreenIcon from '../icons/minimize-full-screen.svg'
 import Player from './Player/Player'
 
 const PlayerPageContainer = styled.div`
@@ -23,7 +25,7 @@ const PlayerPageInnerContainer = styled.div`
   height: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: space-between;
 `
 
 const ToggleDataViewButton = styled.button`
@@ -41,11 +43,27 @@ const ToggleDataViewButton = styled.button`
   }
 `
 
+const FullScreenButton = styled.button`
+  background: none;
+  border: none;
+  width: 3rem;
+  height: 3rem;
+  align-self: flex-end;
+  cursor: pointer;
+  img {
+    background: none;
+  }
+  /* &:focus {
+    outline: ${props => props.userCanClick ? 'none' : '-webkit-focus-ring-color auto 1px'}
+  } */
+`
+
 
 export default () => {
   const [color, setColor] = useState('#111111')
   const [lightText, setLightText] = useState(true)
   const [standardView, setStandardView] = useState(true)
+  const [fullScreen, setFullScreen] = useState(false)
   const albumArtUrl = useSelector(state => state.playback.albumArt)
   // Accessibility Minded Toggle Focus -- Assumes User is On Keyboard by Default
   const [userCanClick, setUserCanClick] = useState(false)     
@@ -68,13 +86,30 @@ export default () => {
   return (
     <PlayerPageContainer 
       style={{ backgroundColor: `${color}` }}
-      className="fadeIn2sAfter1s"
+      className={`fadeIn2sAfter1s + ${fullScreen ? 'full-screen-player' : 'half-screen-player'}`}
     >
       <PlayerPageInnerContainer>
         <Player 
           lightText={lightText} 
           standardView={standardView}
         /> 
+        <FullScreenButton
+          style={{
+            filter: lightText ? 'brightness(0) invert(1)' : 'none'
+          }}
+          onClick={()=>{
+            setFullScreen(!fullScreen)
+            setUserCanClick(true)
+          }}
+          onKeyDown={(e) => {
+            if(e.key === 'Enter'){
+              e.preventDefault()
+              setFullScreen(!fullScreen)
+            }
+          }}
+        >
+          <img src={fullScreen ? minimizeFullScreenIcon : fullScreenIcon} alt="toggle-full-screen" />
+        </FullScreenButton>
         <ToggleDataViewButton
           userCanClick={userCanClick}
           style={{

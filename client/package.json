@@ -55,6 +55,7 @@
   },
   "devDependencies": {
     "babel-plugin-macros": "^2.8.0",
+    "react-error-overlay": "^6.0.9",
     "source-map-explorer": "^2.5.0"
   }
 }
